@@ -94,7 +94,7 @@ const Index: React.FC = () => {
                 title="Software Developer"
                 location="Mumbai, Maharashtra, India"
                 email="amanmaurya.me@gmail.com"
-                photo="https://media.licdn.com/dms/image/v2/D4D03AQHqG1e7wGimPA/profile-displayphoto-shrink_800_800/B4DZXtmuK6G4Ac-/0/1743448106192?e=1751500800&v=beta&t=QUQY6E_lhuVpPM4RRZe4Riwscr1IPNA57RUEQq7Te8I"
+                photo="/public/IMG_1172.jpg" // Assuming the image is in the public/images folder
                 linkedIn="https://www.linkedin.com/in/amanmaurya-me/"
                 github="https://github.com/amanmaurya7"
                 resume="https://drive.google.com/file/d/1IUvCaLDExGS29Dhd3i1AOXY_smeX5Uwn/view?usp=drive_link"

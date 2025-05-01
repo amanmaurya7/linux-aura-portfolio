@@ -161,7 +161,7 @@ const Profile: React.FC<ProfileProps> = ({
                 <span className="text-sm font-semibold text-terminal-green">{name}</span>
               </div>
               
-              <div className="absolute -right-2 top-1/4 bg-terminal-dark px-3 py-1 rounded-full border border-terminal-green/30 flex items-center space-x-1 animate-float">
+              <div className="absolute -right-2 top-4 bg-terminal-dark px-3 py-1 rounded-full border border-terminal-green/30 flex items-center space-x-1 animate-float">
                 <User size={14} className="text-terminal-cyan" />
                 <span className="text-xs text-terminal-cyan">{isMobile ? title.slice(0, 12) + '...' : title}</span>
               </div>
