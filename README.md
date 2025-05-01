@@ -1,7 +1,5 @@
 # Linux Aura Portfolio - Aman Maurya
 
-![Portfolio Preview]
-
 ## 🌐 [Live Demo: amanengineer.me](https://www.amanengineer.me/)
 
 A modern, interactive portfolio website with a Linux terminal aesthetic, showcasing my projects, skills, and professional experience.
