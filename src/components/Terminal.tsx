@@ -2,7 +2,12 @@
 import { useState, useEffect, useRef } from 'react';
 import TypingEffect from './TypingEffect';
 
-const Terminal = () => {
+interface TerminalProps {
+  onComplete?: () => void;
+  preventAutoScroll?: boolean;
+}
+
+const Terminal = ({ onComplete, preventAutoScroll }: TerminalProps) => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showPortfolioOutput, setShowPortfolioOutput] = useState(false);
   const outputRef = useRef<HTMLDivElement>(null);
@@ -17,6 +22,9 @@ const Terminal = () => {
     setIsTypingComplete(true);
     setTimeout(() => {
       setShowPortfolioOutput(true);
+      if (onComplete) {
+        onComplete();
+      }
     }, 500);
   };
 
@@ -34,7 +42,7 @@ const Terminal = () => {
           <span className="text-green-500 mr-2">aman@linux:~$</span>
           <TypingEffect 
             text="./portfolio.sh" 
-            typingSpeed={100} 
+            speed={100} 
             onComplete={handleTypingComplete} 
           />
         </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
@@ -131,4 +130,3 @@ const Index: React.FC = () => {
 };
 
 export default Index;
-

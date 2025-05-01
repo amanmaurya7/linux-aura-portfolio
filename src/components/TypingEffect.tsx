@@ -72,4 +72,3 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
 };
 
 export default TypingEffect;
-
