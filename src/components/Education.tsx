@@ -39,10 +39,10 @@ const Education: React.FC = () => {
       <div className="container mx-auto px-4">
         <h2 className="section-title mb-8">Education</h2>
         
-        <TerminalWindow title="aman@linux-portfolio:~/education">
+        <TerminalWindow title="aman@linux:~/education">
           <div className="space-y-4">
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/education$</span>
+              <span className="command-prompt">aman@linux:~/education$</span>
               <span className="text-terminal-amber">cat academic_records.md | more</span>
             </div>
             
@@ -96,7 +96,7 @@ const Education: React.FC = () => {
             </div>
             
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/education$</span>
+              <span className="command-prompt">aman@linux:~/education$</span>
               <span className="cursor"></span>
             </div>
           </div>

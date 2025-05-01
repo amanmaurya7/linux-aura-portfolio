@@ -78,10 +78,10 @@ const Experience: React.FC = () => {
       <div className="container mx-auto px-4">
         <h2 className="section-title mb-8">Work Experience</h2>
         
-        <TerminalWindow title="aman@linux-portfolio:~/experience">
+        <TerminalWindow title="aman@linux:~/experience">
           <div className="space-y-4">
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/experience$</span>
+              <span className="command-prompt">aman@linux:~/experience$</span>
               <span className="text-terminal-amber">cat work_history.log</span>
             </div>
             
@@ -146,7 +146,7 @@ const Experience: React.FC = () => {
             </div>
             
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/experience$</span>
+              <span className="command-prompt">aman@linux:~/experience$</span>
               <span className="cursor"></span>
             </div>
           </div>

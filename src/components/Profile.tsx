@@ -45,7 +45,7 @@ const Profile: React.FC<ProfileProps> = ({
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Terminal Info */}
           <div className="order-2 md:order-1">
-            <TerminalWindow title="aman@linux-portfolio:~/about">
+            <TerminalWindow title="aman@linux:~/about">
               {!showContent ? (
                 <div className="space-y-3">
                   <div className="text-terminal-green">Loading user data...</div>
@@ -87,7 +87,7 @@ const Profile: React.FC<ProfileProps> = ({
                   
                   {loadingComplete && (
                     <div className="console-line animate-fade-in" style={{animationDelay: "0.5s"}}>
-                      <span className="command-prompt">aman@linux-portfolio:~/about$</span>
+                      <span className="command-prompt">aman@linux:~/about$</span>
                       <span className="cursor"></span>
                     </div>
                   )}

@@ -54,10 +54,10 @@ const Projects: React.FC = () => {
       <div className="container mx-auto px-4">
         <h2 className="section-title mb-8">Projects</h2>
         
-        <TerminalWindow title="aman@linux-portfolio:~/projects">
+        <TerminalWindow title="aman@linux:~/projects">
           <div className="space-y-4">
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/projects$</span>
+              <span className="command-prompt">aman@linux:~/projects$</span>
               <span className="text-terminal-amber">ls -l | grep "project_*" | sort -r</span>
             </div>
             
@@ -143,7 +143,7 @@ const Projects: React.FC = () => {
             </div>
             
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/projects$</span>
+              <span className="command-prompt">aman@linux:~/projects$</span>
               <span className="cursor"></span>
             </div>
           </div>

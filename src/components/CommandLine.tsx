@@ -114,7 +114,7 @@ const CommandLine: React.FC<CommandLineProps> = ({
         >
           {entry.type === 'command' ? (
             <>
-              <span className="command-prompt">aman@linux-portfolio:~$</span>
+              <span className="command-prompt">aman@linux:~$</span>
               <span>{entry.text}</span>
             </>
           ) : (
@@ -125,7 +125,7 @@ const CommandLine: React.FC<CommandLineProps> = ({
       
       {showPrompt && currentCommandIndex < initialCommands.length && (
         <div className="console-line flex items-center">
-          <span className="command-prompt">aman@linux-portfolio:~$</span>
+          <span className="command-prompt">aman@linux:~$</span>
           <TypingEffect 
             text={initialCommands[currentCommandIndex]} 
             speed={typingSpeed} 
@@ -136,7 +136,7 @@ const CommandLine: React.FC<CommandLineProps> = ({
       
       {currentCommandIndex >= initialCommands.length && (
         <div className="console-line flex items-center">
-          <span className="command-prompt">aman@linux-portfolio:~$</span>
+          <span className="command-prompt">aman@linux:~$</span>
           <span className="cursor"></span>
         </div>
       )}

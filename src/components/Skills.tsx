@@ -43,10 +43,10 @@ const Skills: React.FC = () => {
       <div className="container mx-auto px-4">
         <h2 className="section-title mb-8">Technical Skills</h2>
         
-        <TerminalWindow title="aman@linux-portfolio:~/skills">
+        <TerminalWindow title="aman@linux:~/skills">
           <div className="space-y-4">
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/skills$</span>
+              <span className="command-prompt">aman@linux:~/skills$</span>
               <span className="text-terminal-amber">./list_skills.sh --format=detailed</span>
             </div>
             
@@ -79,7 +79,7 @@ const Skills: React.FC = () => {
             </div>
             
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/skills$</span>
+              <span className="command-prompt">aman@linux:~/skills$</span>
               <span className="cursor"></span>
             </div>
           </div>

@@ -59,10 +59,10 @@ const Contact: React.FC<ContactProps> = ({
         <h2 className="section-title mb-8">Contact Me</h2>
         
         <div className="grid md:grid-cols-2 gap-8">
-          <TerminalWindow title="aman@linux-portfolio:~/contact">
+          <TerminalWindow title="aman@linux:~/contact">
             <div className="space-y-4">
               <div className="console-line">
-                <span className="command-prompt">aman@linux-portfolio:~/contact$</span>
+                <span className="command-prompt">aman@linux:~/contact$</span>
                 <span className="text-terminal-amber">cat contact_info.txt</span>
               </div>
               
@@ -109,16 +109,16 @@ const Contact: React.FC<ContactProps> = ({
               </div>
               
               <div className="console-line">
-                <span className="command-prompt">aman@linux-portfolio:~/contact$</span>
+                <span className="command-prompt">aman@linux:~/contact$</span>
                 <span className="cursor"></span>
               </div>
             </div>
           </TerminalWindow>
           
-          <TerminalWindow title="aman@linux-portfolio:~/contact/message">
+          <TerminalWindow title="aman@linux:~/contact/message">
             <div className="space-y-4">
               <div className="console-line">
-                <span className="command-prompt">aman@linux-portfolio:~/contact$</span>
+                <span className="command-prompt">aman@linux:~/contact$</span>
                 <span className="text-terminal-amber">nano new_message.md</span>
               </div>
               

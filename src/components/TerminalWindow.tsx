@@ -13,7 +13,7 @@ interface TerminalWindowProps {
 
 const TerminalWindow: React.FC<TerminalWindowProps> = ({
   children,
-  title = "aman@linux-portfolio:~",
+  title = "aman@linux:~",
   className = "",
   fullScreen = false,
   contentRef

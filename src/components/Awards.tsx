@@ -41,10 +41,10 @@ const Awards: React.FC = () => {
       <div className="container mx-auto px-4">
         <h2 className="section-title mb-8">Awards & Achievements</h2>
         
-        <TerminalWindow title="aman@linux-portfolio:~/achievements">
+        <TerminalWindow title="aman@linux:~/achievements">
           <div className="space-y-4">
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/achievements$</span>
+              <span className="command-prompt">aman@linux:~/achievements$</span>
               <span className="text-terminal-amber">find . -name "award_*.txt" | xargs cat</span>
             </div>
             
@@ -79,7 +79,7 @@ const Awards: React.FC = () => {
             </div>
             
             <div className="console-line">
-              <span className="command-prompt">aman@linux-portfolio:~/achievements$</span>
+              <span className="command-prompt">aman@linux:~/achievements$</span>
               <span className="cursor"></span>
             </div>
           </div>
