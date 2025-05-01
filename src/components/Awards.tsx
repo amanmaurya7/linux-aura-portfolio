@@ -16,9 +16,9 @@ const achievements: AchievementItem[] = [
   { title: "Technical Head at ISTE", icon: "award" },
   { title: "Acknowledged as a Problem-Solver on Leetcode", icon: "medal" },
   { title: "Attained a 5-star rating in Java Proficiency on Hackerrank", icon: "star" },
-  { title: "Speaker at Solana Hacker Mumbai 2023", date: "September 2023", icon: "trophy" },
+  { title: "Speaker at Solana HackerHouse Mumbai 2023", date: "September 2023", icon: "trophy" },
   { title: "Winner of Techno-Fest (Final Year Project), Thakur Polytechnic", date: "April 2023", icon: "trophy" },
-  { title: "Recipient of Best Student Award, IT Department, Thakur Polytechnic", date: "April 2023", icon: "award" },
+  { title: "Best Student Award, IT Department, Thakur Polytechnic", date: "April 2023", icon: "award" },
   { title: "Qualified for Round 2 of National Engineering Olympiads", date: "November 2021", icon: "medal" },
   { title: "Campus Ambassador at National Engineering Olympiads", date: "December 2021", icon: "star" }
 ];
