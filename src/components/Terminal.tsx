@@ -50,10 +50,27 @@ const Terminal = ({ onComplete, preventAutoScroll }: TerminalProps) => {
         {isTypingComplete && (
           <div ref={outputRef}>
             <p className="text-[#00aeff]">Portfolio loaded successfully!</p>
-            <p className="text-gray-400">Initializing portfolio...</p>
-            <p className="text-gray-400">Loading assets...</p>
-            <p className="text-gray-400">Rendering components...</p>
-            <p className="text-[#00aeff]">Starting interactive session...</p>
+            <p className="text-gray-400 mt-2">Initializing portfolio...</p>
+            <p className="text-gray-400 ml-4">► Checking system compatibility</p>
+            <p className="text-gray-400 ml-4">► Reading configuration files</p>
+            <p className="text-gray-400 ml-4">► Establishing secure connection</p>
+            
+            <p className="text-gray-400 mt-2">Loading assets...</p>
+            <p className="text-gray-400 ml-4">► Images: <span className="text-[#00aeff]">Complete</span></p>
+            <p className="text-gray-400 ml-4">► Styling components: <span className="text-[#00aeff]">Complete</span></p>
+            <p className="text-gray-400 ml-4">► Scripts: <span className="text-[#00aeff]">Complete</span></p>
+
+            <p className="text-gray-400 mt-2">Rendering components...</p>
+            <p className="text-gray-400 ml-4">► Header: <span className="text-[#00aeff]">Loaded</span></p>
+            <p className="text-gray-400 ml-4">► Projects: <span className="text-[#00aeff]">Loaded</span></p>
+            <p className="text-gray-400 ml-4">► Experience: <span className="text-[#00aeff]">Loaded</span></p>
+            <p className="text-gray-400 ml-4">► Contact: <span className="text-[#00aeff]">Loaded</span></p>
+            
+            <p className="text-[#00aeff] mt-2">Starting interactive session...</p>
+            <p className="text-gray-400 ml-4">► Environment: Production</p>
+            <p className="text-gray-400 ml-4">► Status: <span className="text-green-500">Online</span></p>
+            <p className="text-gray-400 ml-4">► Ready for user interaction</p>
+            
             <div className="flex mt-2">
               <span className="text-green-500 mr-2">aman@linux:~$</span>
               <span className="animate-pulse">▌</span>
