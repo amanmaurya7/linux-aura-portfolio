@@ -1,47 +1,25 @@
 
-import React, { ReactNode, forwardRef } from "react";
-import { Terminal as TerminalIcon, X, Minus, Square } from "lucide-react";
-import { useIsMobile } from "../hooks/use-mobile";
+import React, { ReactNode } from 'react';
 
 interface TerminalWindowProps {
   children: ReactNode;
   title?: string;
-  className?: string;
-  fullScreen?: boolean;
-  contentRef?: React.RefObject<HTMLDivElement>;
 }
 
-const TerminalWindow: React.FC<TerminalWindowProps> = ({
-  children,
-  title = "aman@linux:~",
-  className = "",
-  fullScreen = false,
-  contentRef
-}) => {
-  const isMobile = useIsMobile();
-  
+const TerminalWindow = ({ children, title = "Terminal" }: TerminalWindowProps) => {
   return (
-    <div className={`terminal-window ${fullScreen ? 'w-full h-full' : ''} ${className} overflow-hidden`}>
-      <div className="terminal-header">
-        <div className={`flex space-x-2 ${isMobile ? 'mr-1' : 'mr-4'}`}>
-          <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-terminal-red" />
-          <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-terminal-amber" />
-          <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-terminal-green" />
+    <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-700">
+      <div className="bg-gray-800 px-4 py-2 flex items-center">
+        <div className="flex space-x-2">
+          <div className="h-3 w-3 rounded-full bg-red-500"></div>
+          <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+          <div className="h-3 w-3 rounded-full bg-green-500"></div>
         </div>
-        <div className={`flex items-center text-xs text-terminal-text/70 ${isMobile ? 'text-[10px] max-w-[140px] truncate' : ''}`}>
-          <TerminalIcon size={isMobile ? 10 : 12} className="mr-1 text-terminal-green" />
-          {title}
-        </div>
-        <div className="ml-auto flex space-x-2">
-          <Minus size={isMobile ? 10 : 14} className="text-terminal-text/50 hover:text-terminal-text cursor-pointer" />
-          <Square size={isMobile ? 10 : 14} className="text-terminal-text/50 hover:text-terminal-text cursor-pointer" />
-          <X size={isMobile ? 10 : 14} className="text-terminal-text/50 hover:text-terminal-text cursor-pointer" />
-        </div>
+        <div className="ml-4 text-white text-sm font-medium">{title}</div>
       </div>
-      <div ref={contentRef} className="terminal-content overflow-x-auto">
+      <div className="p-4 font-mono text-sm">
         {children}
       </div>
-      <div className="scanline"></div>
     </div>
   );
 };

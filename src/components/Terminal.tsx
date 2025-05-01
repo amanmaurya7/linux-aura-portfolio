@@ -1,97 +1,60 @@
 
-import React, { useEffect, useState, useRef } from "react";
-import TerminalWindow from "./TerminalWindow";
-import CommandLine from "./CommandLine";
-import TypingEffect from "./TypingEffect";
+import { useState, useEffect, useRef } from 'react';
+import TypingEffect from './TypingEffect';
 
-interface TerminalProps {
-  onComplete?: () => void;
-  preventAutoScroll?: boolean;
-}
-
-const Terminal: React.FC<TerminalProps> = ({ 
-  onComplete, 
-  preventAutoScroll = true // Default to true to prevent auto-scrolling
-}) => {
-  const [bootComplete, setBootComplete] = useState(false);
-  const [showCommandLine, setShowCommandLine] = useState(false);
-  const terminalContentRef = useRef<HTMLDivElement>(null);
-
-  const bootMessages = [
-    "Initializing system...",
-    "Loading kernel modules...",
-    "Starting system services...",
-    "Mounting file systems...",
-    "Initializing network interfaces...",
-    "Starting window manager...",
-    "Welcome to Linux Portfolio v1.0",
-    "Type 'help' for available commands"
-  ];
-
-  // Function to scroll to bottom of terminal
-  const scrollToBottom = () => {
-    if (!preventAutoScroll && terminalContentRef.current) {
-      terminalContentRef.current.scrollTop = terminalContentRef.current.scrollHeight;
-    }
-  };
+const Terminal = () => {
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [showPortfolioOutput, setShowPortfolioOutput] = useState(false);
+  const outputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const bootTimer = setTimeout(() => {
-      setBootComplete(true);
-      scrollToBottom();
-      
-      const commandTimer = setTimeout(() => {
-        setShowCommandLine(true);
-        scrollToBottom();
-        if (onComplete) {
-          onComplete();
-        }
-      }, 1000);
-      
-      return () => clearTimeout(commandTimer);
-    }, 2500);
-    
-    return () => clearTimeout(bootTimer);
-  }, [onComplete, preventAutoScroll]);
+    if (isTypingComplete && outputRef.current) {
+      outputRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isTypingComplete, showPortfolioOutput]);
+
+  const handleTypingComplete = () => {
+    setIsTypingComplete(true);
+    setTimeout(() => {
+      setShowPortfolioOutput(true);
+    }, 500);
+  };
 
   return (
-    <TerminalWindow 
-      title="boot@linux-portfolio:~" 
-      className="h-full"
-      contentRef={terminalContentRef}
-    >
-      <div className="space-y-2">
-        {!bootComplete ? (
-          <>
-            {bootMessages.map((message, index) => (
-              <div 
-                key={index} 
-                className="console-line" 
-                style={{ animationDelay: `${index * 0.3}s` }}
-              >
-                <TypingEffect 
-                  text={message} 
-                  speed={20} 
-                  cursor={false}
-                  startDelay={index * 300}
-                  className={index === bootMessages.length - 1 ? "text-terminal-green" : ""}
-                  preventAutoScroll={preventAutoScroll}
-                />
-              </div>
-            ))}
-            <div className="progress-bar mt-4">
-              <div className="progress-fill"></div>
+    <div className="bg-gray-900 text-white font-mono p-4 rounded-md shadow-lg overflow-auto max-h-[500px] w-full">
+      <div className="mb-2 flex items-center">
+        <span className="h-3 w-3 rounded-full bg-red-500 mr-2"></span>
+        <span className="h-3 w-3 rounded-full bg-yellow-500 mr-2"></span>
+        <span className="h-3 w-3 rounded-full bg-green-500 mr-2"></span>
+        <span className="flex-1 text-center text-sm text-gray-400">Terminal</span>
+      </div>
+      <div className="text-sm">
+        <p>Last login: {new Date().toLocaleString()}</p>
+        <div className="flex">
+          <span className="text-green-500 mr-2">aman@linux:~$</span>
+          <TypingEffect 
+            text="./portfolio.sh" 
+            typingSpeed={100} 
+            onComplete={handleTypingComplete} 
+          />
+        </div>
+        
+        {isTypingComplete && (
+          <div ref={outputRef}>
+            <p className="text-[#0029bb]">Portfolio loaded successfully!</p>
+            <p className="text-gray-400">Initializing portfolio...</p>
+            <p className="text-gray-400">Loading assets...</p>
+            <p className="text-gray-400">Rendering components...</p>
+            <p className="text-[#0029bb]">Starting interactive session...</p>
+            <div className="flex mt-2">
+              <span className="text-green-500 mr-2">aman@linux:~$</span>
+              <span className="animate-pulse">▌</span>
             </div>
-          </>
-        ) : showCommandLine ? (
-          <CommandLine onCommandComplete={scrollToBottom} preventAutoScroll={preventAutoScroll} />
-        ) : (
-          <div className="text-terminal-green animate-fade-in">System ready.</div>
+          </div>
         )}
       </div>
-    </TerminalWindow>
+    </div>
   );
 };
 
 export default Terminal;
-

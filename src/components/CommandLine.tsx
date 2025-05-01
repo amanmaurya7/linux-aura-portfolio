@@ -1,153 +1,61 @@
 
-import React, { useState, useEffect, useRef } from "react";
-import TypingEffect from "./TypingEffect";
+import React, { useState, useEffect } from 'react';
 
-interface CommandLineProps {
-  initialCommands?: string[];
-  commandDelay?: number;
-  typingSpeed?: number;
-  onCommandComplete?: () => void;
-  preventAutoScroll?: boolean;
-}
+const CommandLine = () => {
+  const [command, setCommand] = useState('');
+  const [output, setOutput] = useState<string[]>([]);
 
-const CommandLine: React.FC<CommandLineProps> = ({
-  initialCommands = [
-    "cd portfolio",
-    "ls -la",
-    "cat welcome.txt",
-    "chmod +x portfolio.sh",
-    "./portfolio.sh"
-  ],
-  commandDelay = 1000,
-  typingSpeed = 70,
-  onCommandComplete,
-  preventAutoScroll = false
-}) => {
-  const [history, setHistory] = useState<{type: 'command' | 'output', text: string}[]>([]);
-  const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
-  const [commandComplete, setCommandComplete] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(true);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const handleCommand = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Process the command
+    let response = "Command not recognized. Try 'help' for available commands.";
+    
+    if (command.toLowerCase() === 'help') {
+      response = "Available commands: about, skills, projects, contact, clear";
+    } else if (command.toLowerCase() === 'about') {
+      response = "I'm a developer passionate about creating elegant solutions through code.";
+    } else if (command.toLowerCase() === 'skills') {
+      response = "Proficient in: JavaScript, TypeScript, React, Node.js, Python, Linux";
+    } else if (command.toLowerCase() === 'projects') {
+      response = "Check out my projects section for a showcase of my work.";
+    } else if (command.toLowerCase() === 'contact') {
+      response = "Email: example@mail.com | GitHub: github.com/username";
+    } else if (command.toLowerCase() === 'clear') {
+      setOutput([]);
+      setCommand('');
+      return;
+    }
 
-  // Output responses for each command
-  const commandResponses: Record<string, string[]> = {
-    "cd portfolio": [""],
-    "ls -la": [
-      "drwxr-xr-x  5 aman  staff  160 May  1 12:34 .",
-      "drwxr-xr-x  3 aman  staff   96 May  1 12:32 ..",
-      "-rw-r--r--  1 aman  staff  390 May  1 12:33 .env",
-      "drwxr-xr-x  8 aman  staff  256 May  1 12:33 .git",
-      "-rw-r--r--  1 aman  staff   14 May  1 12:33 .gitignore",
-      "-rw-r--r--  1 aman  staff  478 May  1 12:33 README.md",
-      "drwxr-xr-x 12 aman  staff  384 May  1 12:33 assets",
-      "drwxr-xr-x 24 aman  staff  768 May  1 12:33 components",
-      "-rwxr-xr-x  1 aman  staff  854 May  1 12:33 portfolio.sh",
-      "-rw-r--r--  1 aman  staff 2345 May  1 12:33 welcome.txt",
-    ],
-    "cat welcome.txt": [
-      "---------------------------------------------",
-      "| Welcome to Aman Maurya's Portfolio        |",
-      "| Full Stack Developer | Problem Solver     |",
-      "---------------------------------------------",
-      "",
-      "Hello! I'm a passionate developer with a keen",
-      "interest in building scalable applications.",
-      "Explore my portfolio using the navigation or",
-      "continue with terminal commands.",
-      "",
-      "Type './portfolio.sh' to start the interactive",
-      "portfolio experience!"
-    ],
-    "chmod +x portfolio.sh": [""],
-    "./portfolio.sh": [
-      "Initializing portfolio...",
-      "Loading assets...",
-      "Rendering components...",
-      "Starting interactive session...",
-      "Portfolio loaded successfully!"
-    ]
+    // Update output
+    setOutput([...output, `$ ${command}`, response]);
+    setCommand('');
   };
 
-  // Auto-scroll to bottom only if not prevented
-  useEffect(() => {
-    if (!preventAutoScroll && bottomRef.current) {
-      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (onCommandComplete) {
-      onCommandComplete();
-    }
-  }, [history, onCommandComplete, preventAutoScroll]);
-
-  // Process and display initial commands
-  useEffect(() => {
-    if (currentCommandIndex >= initialCommands.length) return;
-    
-    const timer = setTimeout(() => {
-      const command = initialCommands[currentCommandIndex];
-      setHistory(prev => [...prev, { type: 'command', text: command }]);
-      
-      setCommandComplete(false);
-      setShowPrompt(false);
-      
-      // Add response after command completes
-      const responseTimer = setTimeout(() => {
-        const response = commandResponses[command] || ["Command executed successfully."];
-        response.forEach((line) => {
-          setHistory(prev => [...prev, { type: 'output', text: line }]);
-        });
-        
-        setCurrentCommandIndex(prev => prev + 1);
-        setShowPrompt(true);
-      }, command.length * typingSpeed + 300);
-      
-      return () => clearTimeout(responseTimer);
-    }, (currentCommandIndex === 0 ? 500 : commandDelay));
-    
-    return () => clearTimeout(timer);
-  }, [currentCommandIndex, initialCommands, commandDelay, typingSpeed]);
-  
   return (
-    <div className="font-mono text-sm">
-      {history.map((entry, index) => (
-        <div 
-          key={index} 
-          className={`console-line ${entry.type === 'output' ? 'command-output' : ''}`}
-          style={{ animationDelay: `${index * 0.1}s` }}
-        >
-          {entry.type === 'command' ? (
-            <>
-              <span className="command-prompt">aman@linux:~$</span>
-              <span>{entry.text}</span>
-            </>
-          ) : (
-            entry.text
-          )}
-        </div>
-      ))}
-      
-      {showPrompt && currentCommandIndex < initialCommands.length && (
-        <div className="console-line flex items-center">
-          <span className="command-prompt">aman@linux:~$</span>
-          <TypingEffect 
-            text={initialCommands[currentCommandIndex]} 
-            speed={typingSpeed} 
-            onComplete={() => setCommandComplete(true)}
-            preventAutoScroll={preventAutoScroll}
-          />
-        </div>
-      )}
-      
-      {currentCommandIndex >= initialCommands.length && (
-        <div className="console-line flex items-center">
-          <span className="command-prompt">aman@linux:~$</span>
-          <span className="cursor"></span>
-        </div>
-      )}
-      
-      <div ref={bottomRef}></div>
+    <div className="bg-black text-white font-mono p-4 rounded-lg shadow-lg max-h-[500px] overflow-auto">
+      <div className="mb-2">
+        <span className="text-gray-400">Type 'help' for available commands</span>
+      </div>
+      <div className="mb-4">
+        {output.map((line, index) => (
+          <div key={index} className={line.startsWith('$') ? 'text-green-500' : 'text-[#0029bb]'}>
+            {line}
+          </div>
+        ))}
+      </div>
+      <form onSubmit={handleCommand} className="flex">
+        <span className="text-green-500 mr-2">$</span>
+        <input
+          type="text"
+          value={command}
+          onChange={(e) => setCommand(e.target.value)}
+          className="bg-transparent outline-none flex-1"
+          autoFocus
+        />
+      </form>
     </div>
   );
 };
 
 export default CommandLine;
-
