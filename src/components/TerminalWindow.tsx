@@ -15,7 +15,7 @@ const TerminalWindow = ({ children, title = "Terminal" }: TerminalWindowProps) =
           <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
           <div className="h-3 w-3 rounded-full bg-green-500"></div>
         </div>
-        <div className="ml-4 text-white text-sm font-mono">{title}</div>
+        <div className="ml-4 text-white text-sm font-medium">{title}</div>
       </div>
       <div className="p-4 font-mono text-sm">
         {children}
