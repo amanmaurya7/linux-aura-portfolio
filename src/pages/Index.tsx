@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
@@ -57,8 +58,8 @@ const Index: React.FC = () => {
           <Navbar />
           
           {/* Hero Section */}
-          <section id="home" className="min-h-screen flex items-center justify-center relative pt-16 sm:pt-0">
-            <div className="container mx-auto px-4">
+          <section id="home" className="min-h-screen flex flex-col justify-between relative pt-16 sm:pt-0">
+            <div className="container mx-auto px-4 flex-grow flex flex-col items-center justify-center">
               <div className="text-center mb-8">
                 <h1 className="text-3xl md:text-6xl font-bold mb-4 grad-text font-display">
                   Aman Maurya
@@ -68,22 +69,24 @@ const Index: React.FC = () => {
                 </div>
               </div>
               
-              <div className="max-w-3xl mx-auto h-[60vh]">
+              <div className="max-w-3xl w-full mx-auto h-[60vh]">
                 <ScrollArea className="h-full">
                   <Terminal onComplete={handleBootComplete} preventAutoScroll={true} />
                 </ScrollArea>
               </div>
+            </div>
               
-              {bootComplete && (
+            {bootComplete && (
+              <div className="w-full flex justify-center mb-6">
                 <div 
-                  className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 text-terminal-text/75 flex flex-col items-center animate-fade-in cursor-pointer hover:text-terminal-green transition-colors duration-300"
+                  className="text-terminal-text/75 flex flex-col items-center cursor-pointer hover:text-terminal-green transition-colors duration-300"
                   onClick={scrollToContent}
                 >
-                  <div className="mb-2 text-sm sm:text-base font-display tracking-wider">Scroll to explore</div>
+                  <div className="mb-1 text-sm sm:text-base font-display tracking-wider">Scroll to explore</div>
                   <ChevronDown size={24} className="animate-bounce text-terminal-green" />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </section>
           
           {bootComplete && (

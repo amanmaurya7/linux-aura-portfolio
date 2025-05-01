@@ -19,7 +19,8 @@ const projects: Project[] = [
       "Developed a scalable architecture with Pinata API integration for distributed file storage and automated file processing."
     ],
     technologies: ["React.js", "Hardhat", "IPFS", "Pinata API", "Ethereum", "Solidity"],
-    github: "https://github.com/amanmauryahere"
+    github: "https://github.com/amanmauryahere",
+    link: "https://decendata.vercel.app/"
   },
   {
     title: "CoDoc: Collaborative Document Editing Redefined",
@@ -38,7 +39,7 @@ const projects: Project[] = [
     ],
     technologies: ["Blockchain", "Smart Contracts", "Web3.js", "React", "Tailwind CSS"],
     github: "https://github.com/amanmauryahere",
-    link: "https://kryptonox.example.com"
+    link: "https://kryptonox.netlify.app/"
   },
 ];
 

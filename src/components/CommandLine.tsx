@@ -39,7 +39,7 @@ const CommandLine = () => {
       </div>
       <div className="mb-4">
         {output.map((line, index) => (
-          <div key={index} className={line.startsWith('$') ? 'text-green-500' : 'text-[#0029bb]'}>
+          <div key={index} className={line.startsWith('$') ? 'text-green-500' : 'text-[#0043ff]'}>
             {line}
           </div>
         ))}
