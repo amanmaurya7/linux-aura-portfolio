@@ -56,7 +56,6 @@ const Terminal = ({ onComplete, preventAutoScroll }: TerminalProps) => {
             <p className="text-gray-400 ml-4">► Establishing secure connection</p>
             
             <p className="text-gray-400 mt-2">Loading assets...</p>
-            <p className="text-gray-400 ml-4">► Images: <span className="text-[#00aeff]">Complete</span></p>
             <p className="text-gray-400 ml-4">► Styling components: <span className="text-[#00aeff]">Complete</span></p>
             <p className="text-gray-400 ml-4">► Scripts: <span className="text-[#00aeff]">Complete</span></p>
 
