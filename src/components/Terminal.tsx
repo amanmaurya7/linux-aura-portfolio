@@ -49,11 +49,11 @@ const Terminal = ({ onComplete, preventAutoScroll }: TerminalProps) => {
         
         {isTypingComplete && (
           <div ref={outputRef}>
-            <p className="text-[#0043ff]">Portfolio loaded successfully!</p>
+            <p className="text-[#00aeff]">Portfolio loaded successfully!</p>
             <p className="text-gray-400">Initializing portfolio...</p>
             <p className="text-gray-400">Loading assets...</p>
             <p className="text-gray-400">Rendering components...</p>
-            <p className="text-[#0043ff]">Starting interactive session...</p>
+            <p className="text-[#00aeff]">Starting interactive session...</p>
             <div className="flex mt-2">
               <span className="text-green-500 mr-2">aman@linux:~$</span>
               <span className="animate-pulse">▌</span>

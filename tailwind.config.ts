@@ -67,7 +67,7 @@ export default {
                 terminal: {
                     bg: '#0C0C0D',
                     text: '#F8F8F2',
-                    green: '#0043ff',  // Changed from #0029bb to #0043ff
+                    green: '#00aeff',  // Changed from #0043ff to #00aeff
                     cyan: '#00FFFF',
                     amber: '#FFBF00',
                     purple: '#9B30FF',
