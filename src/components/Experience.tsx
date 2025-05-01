@@ -27,7 +27,7 @@ const experiences: ExperienceItem[] = [
     company: "Shiemvoltech Private Limited",
     position: "Software Development Intern",
     period: "December 2024 – March 2025",
-    location: "Remote",
+    location: "Mumbai (Remote)",
     description: [
       "Developed a user-friendly employee management system that made it easier for admins to add team members, assign tasks, and track progress.",
       "Employees could seamlessly update their task statuses, ensuring smooth workflow management.",
