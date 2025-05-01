@@ -1,11 +1,11 @@
 
 import React from "react";
 import TerminalWindow from "./TerminalWindow";
-import { Code, Database, Server, Monitor, Cloud } from "lucide-react";
+import { Code, Database, Server, Monitor, Cloud, LucideIcon } from "lucide-react";
 
 interface SkillCategory {
   title: string;
-  icon: React.FC<{ size?: number; className?: string }>;
+  icon: LucideIcon;
   skills: string[];
 }
 
@@ -76,65 +76,6 @@ const Skills: React.FC = () => {
                   </div>
                 </div>
               ))}
-            </div>
-            
-            <div className="mt-8 bg-terminal-dark/50 border border-terminal-green/20 rounded-md p-4 animate-fade-in" style={{animationDelay: "1s"}}>
-              <div className="flex items-center mb-3">
-                <div className="w-2 h-2 rounded-full bg-terminal-green mr-2"></div>
-                <h3 className="text-terminal-green font-semibold">Skill Progression</h3>
-              </div>
-              
-              <div className="space-y-4 pl-4">
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span>ReactJS</span>
-                    <span>90%</span>
-                  </div>
-                  <div className="h-2 bg-terminal-dark rounded-full overflow-hidden">
-                    <div className="h-full bg-terminal-green" style={{width: "90%"}}></div>
-                  </div>
-                </div>
-                
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span>Java</span>
-                    <span>85%</span>
-                  </div>
-                  <div className="h-2 bg-terminal-dark rounded-full overflow-hidden">
-                    <div className="h-full bg-terminal-green" style={{width: "85%"}}></div>
-                  </div>
-                </div>
-                
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span>TypeScript</span>
-                    <span>80%</span>
-                  </div>
-                  <div className="h-2 bg-terminal-dark rounded-full overflow-hidden">
-                    <div className="h-full bg-terminal-green" style={{width: "80%"}}></div>
-                  </div>
-                </div>
-                
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span>AWS</span>
-                    <span>75%</span>
-                  </div>
-                  <div className="h-2 bg-terminal-dark rounded-full overflow-hidden">
-                    <div className="h-full bg-terminal-green" style={{width: "75%"}}></div>
-                  </div>
-                </div>
-                
-                <div>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span>MongoDB</span>
-                    <span>70%</span>
-                  </div>
-                  <div className="h-2 bg-terminal-dark rounded-full overflow-hidden">
-                    <div className="h-full bg-terminal-green" style={{width: "70%"}}></div>
-                  </div>
-                </div>
-              </div>
             </div>
             
             <div className="console-line">

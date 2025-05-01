@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { useIsMobile } from "../hooks/use-mobile";
 
 interface TypingEffectProps {
   text: string;
@@ -21,6 +22,10 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [started, setStarted] = useState(false);
+  const isMobile = useIsMobile();
+  
+  // On mobile devices, type faster
+  const adjustedSpeed = isMobile ? Math.max(20, speed * 0.7) : speed;
   
   useEffect(() => {
     const startTimeout = setTimeout(() => {
@@ -37,19 +42,19 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
       const timeout = setTimeout(() => {
         setDisplayText(prev => prev + text[currentIndex]);
         setCurrentIndex(prevIndex => prevIndex + 1);
-      }, speed);
+      }, adjustedSpeed);
       
       return () => clearTimeout(timeout);
     } else if (onComplete) {
       onComplete();
     }
-  }, [currentIndex, speed, text, onComplete, started]);
+  }, [currentIndex, adjustedSpeed, text, onComplete, started]);
 
   return (
     <span className={className}>
       {displayText}
       {cursor && currentIndex < text.length && (
-        <span className="animate-cursor-blink">█</span>
+        <span className={`animate-cursor-blink ${isMobile ? 'text-xs' : ''}`}>█</span>
       )}
     </span>
   );

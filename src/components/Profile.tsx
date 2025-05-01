@@ -3,17 +3,17 @@ import React, { useEffect, useState } from "react";
 import TerminalWindow from "./TerminalWindow";
 import TypingEffect from "./TypingEffect";
 import { Github, Linkedin, Mail, MapPin, User, Terminal, ExternalLink } from "lucide-react";
+import { useIsMobile } from "../hooks/use-mobile";
 
 interface ProfileProps {
   name: string;
   title: string;
   location: string;
   email: string;
-  phone: string;
   photo: string;
   linkedIn: string;
   github: string;
-  portfolio: string;
+  resume: string;
 }
 
 const Profile: React.FC<ProfileProps> = ({
@@ -21,14 +21,14 @@ const Profile: React.FC<ProfileProps> = ({
   title,
   location,
   email,
-  phone,
   photo,
   linkedIn,
   github,
-  portfolio
+  resume
 }) => {
   const [showContent, setShowContent] = useState(false);
   const [loadingComplete, setLoadingComplete] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -71,13 +71,12 @@ const Profile: React.FC<ProfileProps> = ({
   "profession": "${title}",
   "location": "${location}",
   "contact": {
-    "email": "${email}",
-    "phone": "${phone}"
+    "email": "${email}"
   },
   "links": {
     "linkedin": "${linkedIn}",
     "github": "${github}",
-    "portfolio": "${portfolio}"
+    "resume": "${resume}"
   },
   "bio": "I am eager to connect with like-minded professionals and explore opportunities where I can contribute my technical skills, passion for learning, and drive for excellence. Let's connect and discuss how we can collaborate to drive innovation and achieve remarkable results."
 }`}
@@ -125,14 +124,14 @@ const Profile: React.FC<ProfileProps> = ({
                 <span>GitHub</span>
               </a>
               <a 
-                href={portfolio} 
+                href={resume} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn flex items-center gap-2"
-                aria-label="Portfolio"
+                aria-label="Resume"
               >
                 <ExternalLink size={16} />
-                <span>Portfolio</span>
+                <span>Resume</span>
               </a>
             </div>
           </div>

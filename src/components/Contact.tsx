@@ -1,11 +1,10 @@
 
 import React, { useState } from "react";
 import TerminalWindow from "./TerminalWindow";
-import { Mail, Send, Phone, Linkedin, Github, MapPin } from "lucide-react";
+import { Mail, Send, Linkedin, Github, MapPin } from "lucide-react";
 
 interface ContactProps {
   email: string;
-  phone: string;
   location: string;
   linkedin: string;
   github: string;
@@ -13,7 +12,6 @@ interface ContactProps {
 
 const Contact: React.FC<ContactProps> = ({
   email,
-  phone,
   location,
   linkedin,
   github
@@ -74,13 +72,6 @@ const Contact: React.FC<ContactProps> = ({
                     <Mail size={18} />
                   </div>
                   <a href={`mailto:${email}`}>{email}</a>
-                </div>
-                
-                <div className="flex items-center space-x-3 hover:text-terminal-green transition-colors">
-                  <div className="p-2 bg-terminal-dark rounded-md">
-                    <Phone size={18} />
-                  </div>
-                  <span>{phone}</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 hover:text-terminal-green transition-colors">
