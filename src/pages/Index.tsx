@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
@@ -10,7 +11,7 @@ import Contact from "../components/Contact";
 import Terminal from "../components/Terminal";
 import { ChevronDown } from "lucide-react";
 import { ScrollArea } from "../components/ui/scroll-area";
-import photo from "../assets/IMG_1172.jpg"; // Updated to match exact case (uppercase JPG)
+import photo from "../assets/IMG_1172.jpg"; // Adjust the path as necessary
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -96,7 +97,7 @@ const Index: React.FC = () => {
                 title="Software Developer"
                 location="Mumbai, Maharashtra, India"
                 email="amanmaurya.me@gmail.com"
-                photo={photo} // Using the imported photo
+                photo="/IMG_1172.jpg" // Assuming the image is in the public/images folder
                 linkedIn="https://www.linkedin.com/in/amanmaurya-me/"
                 github="https://github.com/amanmaurya7"
                 resume="https://drive.google.com/file/d/1IUvCaLDExGS29Dhd3i1AOXY_smeX5Uwn/view?usp=drive_link"
