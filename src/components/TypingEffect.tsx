@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "../hooks/use-mobile";
 
 interface TypingEffectProps {
@@ -23,6 +23,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [started, setStarted] = useState(false);
   const isMobile = useIsMobile();
+  const containerRef = useRef<HTMLSpanElement>(null);
   
   // On mobile devices, type faster to improve user experience
   const adjustedSpeed = isMobile ? Math.max(15, speed * 0.6) : speed;
@@ -42,6 +43,14 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
       const timeout = setTimeout(() => {
         setDisplayText(prev => prev + text[currentIndex]);
         setCurrentIndex(prevIndex => prevIndex + 1);
+        
+        // Scroll to the bottom smoothly when new text is added
+        if (containerRef.current) {
+          const parentElement = containerRef.current.closest('.terminal-content');
+          if (parentElement) {
+            parentElement.scrollTop = parentElement.scrollHeight;
+          }
+        }
       }, adjustedSpeed);
       
       return () => clearTimeout(timeout);
@@ -51,7 +60,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   }, [currentIndex, adjustedSpeed, text, onComplete, started]);
 
   return (
-    <span className={className}>
+    <span ref={containerRef} className={className}>
       {displayText}
       {cursor && currentIndex < text.length && (
         <span className={`animate-cursor-blink ${isMobile ? 'text-xs' : ''}`}>█</span>

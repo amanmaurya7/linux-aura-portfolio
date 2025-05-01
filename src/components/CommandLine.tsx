@@ -6,6 +6,7 @@ interface CommandLineProps {
   initialCommands?: string[];
   commandDelay?: number;
   typingSpeed?: number;
+  onCommandComplete?: () => void;
 }
 
 const CommandLine: React.FC<CommandLineProps> = ({
@@ -17,7 +18,8 @@ const CommandLine: React.FC<CommandLineProps> = ({
     "./portfolio.sh"
   ],
   commandDelay = 1000,
-  typingSpeed = 70
+  typingSpeed = 70,
+  onCommandComplete
 }) => {
   const [history, setHistory] = useState<{type: 'command' | 'output', text: string}[]>([]);
   const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
@@ -66,8 +68,13 @@ const CommandLine: React.FC<CommandLineProps> = ({
 
   // Auto-scroll to bottom
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [history]);
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (onCommandComplete) {
+      onCommandComplete();
+    }
+  }, [history, onCommandComplete]);
 
   // Process and display initial commands
   useEffect(() => {

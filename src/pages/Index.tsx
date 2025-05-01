@@ -10,6 +10,7 @@ import Awards from "../components/Awards";
 import Contact from "../components/Contact";
 import Terminal from "../components/Terminal";
 import { ChevronDown } from "lucide-react";
+import { ScrollArea } from "../components/ui/scroll-area";
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -26,6 +27,13 @@ const Index: React.FC = () => {
 
   const handleBootComplete = () => {
     setBootComplete(true);
+  };
+
+  const scrollToContent = () => {
+    const profileSection = document.getElementById('profile');
+    if (profileSection) {
+      profileSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -62,13 +70,18 @@ const Index: React.FC = () => {
               </div>
               
               <div className="max-w-3xl mx-auto h-[60vh]">
-                <Terminal onComplete={handleBootComplete} />
+                <ScrollArea className="h-full">
+                  <Terminal onComplete={handleBootComplete} />
+                </ScrollArea>
               </div>
               
               {bootComplete && (
-                <div className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 text-terminal-text/60 flex flex-col items-center animate-fade-in">
-                  <div className="mb-2">Scroll to explore</div>
-                  <ChevronDown size={24} className="animate-bounce" />
+                <div 
+                  className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 text-terminal-text/75 flex flex-col items-center animate-fade-in cursor-pointer hover:text-terminal-green transition-colors duration-300"
+                  onClick={scrollToContent}
+                >
+                  <div className="mb-2 text-sm sm:text-base font-display tracking-wider">Scroll to explore</div>
+                  <ChevronDown size={24} className="animate-bounce text-terminal-green" />
                 </div>
               )}
             </div>

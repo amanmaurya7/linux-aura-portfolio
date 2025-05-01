@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, forwardRef } from "react";
 import { Terminal as TerminalIcon, X, Minus, Square } from "lucide-react";
 import { useIsMobile } from "../hooks/use-mobile";
 
@@ -8,13 +8,15 @@ interface TerminalWindowProps {
   title?: string;
   className?: string;
   fullScreen?: boolean;
+  contentRef?: React.RefObject<HTMLDivElement>;
 }
 
 const TerminalWindow: React.FC<TerminalWindowProps> = ({
   children,
   title = "aman@linux-portfolio:~",
   className = "",
-  fullScreen = false
+  fullScreen = false,
+  contentRef
 }) => {
   const isMobile = useIsMobile();
   
@@ -36,7 +38,7 @@ const TerminalWindow: React.FC<TerminalWindowProps> = ({
           <X size={isMobile ? 10 : 14} className="text-terminal-text/50 hover:text-terminal-text cursor-pointer" />
         </div>
       </div>
-      <div className="terminal-content overflow-x-auto">
+      <div ref={contentRef} className="terminal-content overflow-x-auto">
         {children}
       </div>
       <div className="scanline"></div>
