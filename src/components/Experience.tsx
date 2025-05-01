@@ -82,7 +82,7 @@ const Experience: React.FC = () => {
           <div className="space-y-4">
             <div className="console-line">
               <span className="command-prompt">aman@linux:~/experience$</span>
-              <span className="text-terminal-amber">cat work_history.log</span>
+              <span className="text-terminal-amber"> cat work_history.log</span>
             </div>
             
             <div className="space-y-4">
@@ -113,19 +113,21 @@ const Experience: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center mt-2 text-xs text-terminal-text/70 space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <span className="font-semibold text-terminal-cyan">{exp.company}</span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-1">
-                      <Calendar size={12} />
-                      <span>{exp.period}</span>
-                    </div>
-                    
-                    <div className="flex items-center space-x-1">
-                      <MapPin size={12} />
-                      <span>{exp.location}</span>
+                  <div className="flex flex-col mt-2 text-xs">
+                    <div className="flex">
+                      <div className="w-1/3 text-terminal-green">
+                        {exp.company}
+                      </div>
+                      
+                      <div className="w-1/3 flex items-center text-terminal-text/70">
+                        <Calendar size={12} className="mr-1" />
+                        <span>{exp.period}</span>
+                      </div>
+                      
+                      <div className="w-1/3 flex items-center justify-end text-terminal-text/70">
+                        <MapPin size={12} className="mr-1" />
+                        <span>{exp.location}</span>
+                      </div>
                     </div>
                   </div>
                   
