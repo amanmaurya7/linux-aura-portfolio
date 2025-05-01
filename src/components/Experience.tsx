@@ -48,7 +48,7 @@ const experiences: ExperienceItem[] = [
     company: "GFG-TCET",
     position: "Technical Head",
     period: "March 2025 - Present",
-    location: "Mumbai, India",
+    location: "Mumbai",
     description: [
       "Leading technical initiatives and providing strategic guidance for GFG-TCET activities.",
       "Mentoring team members on technical best practices and emerging technologies."
@@ -58,7 +58,7 @@ const experiences: ExperienceItem[] = [
     company: "TCET Shastra-Coding Club",
     position: "Researcher",
     period: "October 2024 - April 2025",
-    location: "Mumbai, India",
+    location: "Mumbai",
     description: [
       "Conducted research on emerging programming techniques and algorithms.",
       "Collaborated with team members to solve complex coding problems and develop innovative solutions."
