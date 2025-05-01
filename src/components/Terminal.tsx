@@ -7,16 +7,16 @@ interface TerminalProps {
   preventAutoScroll?: boolean;
 }
 
-const Terminal = ({ onComplete, preventAutoScroll }: TerminalProps) => {
+const Terminal = ({ onComplete, preventAutoScroll = true }: TerminalProps) => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showPortfolioOutput, setShowPortfolioOutput] = useState(false);
   const outputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isTypingComplete && outputRef.current) {
+    if (isTypingComplete && outputRef.current && !preventAutoScroll) {
       outputRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [isTypingComplete, showPortfolioOutput]);
+  }, [isTypingComplete, showPortfolioOutput, preventAutoScroll]);
 
   const handleTypingComplete = () => {
     setIsTypingComplete(true);
@@ -44,6 +44,7 @@ const Terminal = ({ onComplete, preventAutoScroll }: TerminalProps) => {
             text="./portfolio.sh" 
             speed={100} 
             onComplete={handleTypingComplete} 
+            preventAutoScroll={preventAutoScroll}
           />
         </div>
         

@@ -19,7 +19,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   onComplete,
   startDelay = 0,
   cursor = true,
-  preventAutoScroll = false
+  preventAutoScroll = true
 }) => {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
