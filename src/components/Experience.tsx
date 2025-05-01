@@ -102,7 +102,7 @@ const Experience: React.FC = () => {
                   >
                     <div className="flex items-center space-x-2">
                       <Briefcase size={18} className="text-terminal-green" />
-                      <h3 className="text-terminal-green font-semibold">{exp.position}</h3>
+                      <h3 className="text-terminal-cyan font-semibold">{exp.position}</h3>
                     </div>
                     <div className="text-terminal-text/70 text-sm">
                       {expandedIndex === index ? (
@@ -113,21 +113,19 @@ const Experience: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="flex flex-col mt-2 text-xs">
-                    <div className="flex">
-                      <div className="w-1/3 text-terminal-green">
-                        {exp.company}
-                      </div>
-                      
-                      <div className="w-1/3 flex items-center text-terminal-text/70">
-                        <Calendar size={12} className="mr-1" />
-                        <span>{exp.period}</span>
-                      </div>
-                      
-                      <div className="w-1/3 flex items-center justify-end text-terminal-text/70">
-                        <MapPin size={12} className="mr-1" />
-                        <span>{exp.location}</span>
-                      </div>
+                  <div className="flex mt-2 text-sm">
+                    <div className="text-terminal-green w-1/3">
+                      {exp.company}
+                    </div>
+                    
+                    <div className="flex items-center w-1/3 text-terminal-text/70">
+                      <span className="mr-1">⏱</span>
+                      <span>{exp.period}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-end w-1/3 text-terminal-text/70">
+                      <span className="mr-1">📍</span>
+                      <span>{exp.location}</span>
                     </div>
                   </div>
                   
