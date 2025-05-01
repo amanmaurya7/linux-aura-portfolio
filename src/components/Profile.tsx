@@ -28,6 +28,7 @@ const Profile: React.FC<ProfileProps> = ({
 }) => {
   const [showContent, setShowContent] = useState(false);
   const [loadingComplete, setLoadingComplete] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const Profile: React.FC<ProfileProps> = ({
                   
                   {loadingComplete && (
                     <div className="bg-terminal-dark/50 border border-terminal-green/20 rounded-md p-4 my-3 font-mono text-sm overflow-x-auto animate-fade-in">
-                      <pre className="whitespace-pre-wrap text-terminal-text">
+                      <pre className="whitespace-pre-wrap text-terminal-text break-all">
 {`{
   "name": "${name}",
   "profession": "${title}",
@@ -139,16 +140,19 @@ const Profile: React.FC<ProfileProps> = ({
           {/* Profile Image and Info */}
           <div className="order-1 md:order-2 flex justify-center">
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-terminal-green/30 p-1 bg-terminal-dark relative">
-                <img 
-                  src={photo} 
-                  alt={name} 
-                  className="w-full h-full object-cover rounded-full"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "https://via.placeholder.com/400x400?text=AM";
-                  }}
-                />
+              <div className="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-terminal-green/30 p-1 bg-terminal-dark relative">
+                {!imageError ? (
+                  <img 
+                    src={photo} 
+                    alt={name} 
+                    className="w-full h-full object-cover rounded-full"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-terminal-dark rounded-full text-4xl font-bold text-terminal-green">
+                    {name.split(' ').map(word => word[0]).join('')}
+                  </div>
+                )}
                 <div className="absolute inset-0 rounded-full border-2 border-terminal-green/20 animate-pulse"></div>
               </div>
               
@@ -159,12 +163,12 @@ const Profile: React.FC<ProfileProps> = ({
               
               <div className="absolute -right-2 top-1/4 bg-terminal-dark px-3 py-1 rounded-full border border-terminal-green/30 flex items-center space-x-1 animate-float">
                 <User size={14} className="text-terminal-cyan" />
-                <span className="text-xs text-terminal-cyan">{title}</span>
+                <span className="text-xs text-terminal-cyan">{isMobile ? title.slice(0, 12) + '...' : title}</span>
               </div>
               
               <div className="absolute -left-2 top-2/3 bg-terminal-dark px-3 py-1 rounded-full border border-terminal-green/30 flex items-center space-x-1 animate-float" style={{animationDelay: "1s"}}>
                 <MapPin size={14} className="text-terminal-purple" />
-                <span className="text-xs text-terminal-purple">{location}</span>
+                <span className="text-xs text-terminal-purple">{isMobile ? 'Mumbai' : location}</span>
               </div>
             </div>
           </div>

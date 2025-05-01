@@ -24,8 +24,8 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   const [started, setStarted] = useState(false);
   const isMobile = useIsMobile();
   
-  // On mobile devices, type faster
-  const adjustedSpeed = isMobile ? Math.max(20, speed * 0.7) : speed;
+  // On mobile devices, type faster to improve user experience
+  const adjustedSpeed = isMobile ? Math.max(15, speed * 0.6) : speed;
   
   useEffect(() => {
     const startTimeout = setTimeout(() => {

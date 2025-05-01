@@ -23,7 +23,8 @@ const achievements: AchievementItem[] = [
   { title: "Campus Ambassador at National Engineering Olympiads", date: "December 2021", icon: "star" }
 ];
 
-const iconComponents: Record<string, React.FC<{ size?: number; className?: string }>> = {
+// Fixed the typing issue by using LucideIcon type
+const iconComponents = {
   award: Award,
   trophy: Trophy,
   star: Star,
@@ -50,7 +51,7 @@ const Awards: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {achievements.map((item, index) => {
                 const IconComponent = iconComponents[item.icon];
-                const iconColors: Record<string, string> = {
+                const iconColors = {
                   trophy: "text-terminal-amber",
                   award: "text-terminal-purple",
                   star: "text-terminal-cyan",
