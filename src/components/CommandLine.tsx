@@ -7,6 +7,7 @@ interface CommandLineProps {
   commandDelay?: number;
   typingSpeed?: number;
   onCommandComplete?: () => void;
+  preventAutoScroll?: boolean;
 }
 
 const CommandLine: React.FC<CommandLineProps> = ({
@@ -19,7 +20,8 @@ const CommandLine: React.FC<CommandLineProps> = ({
   ],
   commandDelay = 1000,
   typingSpeed = 70,
-  onCommandComplete
+  onCommandComplete,
+  preventAutoScroll = false
 }) => {
   const [history, setHistory] = useState<{type: 'command' | 'output', text: string}[]>([]);
   const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
@@ -66,15 +68,15 @@ const CommandLine: React.FC<CommandLineProps> = ({
     ]
   };
 
-  // Auto-scroll to bottom
+  // Auto-scroll to bottom only if not prevented
   useEffect(() => {
-    if (bottomRef.current) {
+    if (!preventAutoScroll && bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: 'smooth' });
     }
     if (onCommandComplete) {
       onCommandComplete();
     }
-  }, [history, onCommandComplete]);
+  }, [history, onCommandComplete, preventAutoScroll]);
 
   // Process and display initial commands
   useEffect(() => {
@@ -130,6 +132,7 @@ const CommandLine: React.FC<CommandLineProps> = ({
             text={initialCommands[currentCommandIndex]} 
             speed={typingSpeed} 
             onComplete={() => setCommandComplete(true)}
+            preventAutoScroll={preventAutoScroll}
           />
         </div>
       )}
@@ -147,3 +150,4 @@ const CommandLine: React.FC<CommandLineProps> = ({
 };
 
 export default CommandLine;
+

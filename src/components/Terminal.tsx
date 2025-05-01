@@ -6,9 +6,13 @@ import TypingEffect from "./TypingEffect";
 
 interface TerminalProps {
   onComplete?: () => void;
+  preventAutoScroll?: boolean;
 }
 
-const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
+const Terminal: React.FC<TerminalProps> = ({ 
+  onComplete, 
+  preventAutoScroll = true // Default to true to prevent auto-scrolling
+}) => {
   const [bootComplete, setBootComplete] = useState(false);
   const [showCommandLine, setShowCommandLine] = useState(false);
   const terminalContentRef = useRef<HTMLDivElement>(null);
@@ -26,7 +30,7 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
 
   // Function to scroll to bottom of terminal
   const scrollToBottom = () => {
-    if (terminalContentRef.current) {
+    if (!preventAutoScroll && terminalContentRef.current) {
       terminalContentRef.current.scrollTop = terminalContentRef.current.scrollHeight;
     }
   };
@@ -48,7 +52,7 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
     }, 2500);
     
     return () => clearTimeout(bootTimer);
-  }, [onComplete]);
+  }, [onComplete, preventAutoScroll]);
 
   return (
     <TerminalWindow 
@@ -71,6 +75,7 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
                   cursor={false}
                   startDelay={index * 300}
                   className={index === bootMessages.length - 1 ? "text-terminal-green" : ""}
+                  preventAutoScroll={preventAutoScroll}
                 />
               </div>
             ))}
@@ -79,7 +84,7 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
             </div>
           </>
         ) : showCommandLine ? (
-          <CommandLine onCommandComplete={scrollToBottom} />
+          <CommandLine onCommandComplete={scrollToBottom} preventAutoScroll={preventAutoScroll} />
         ) : (
           <div className="text-terminal-green animate-fade-in">System ready.</div>
         )}
@@ -89,3 +94,4 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
 };
 
 export default Terminal;
+

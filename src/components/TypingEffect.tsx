@@ -9,6 +9,7 @@ interface TypingEffectProps {
   onComplete?: () => void;
   startDelay?: number;
   cursor?: boolean;
+  preventAutoScroll?: boolean;
 }
 
 const TypingEffect: React.FC<TypingEffectProps> = ({
@@ -17,7 +18,8 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   className = "",
   onComplete,
   startDelay = 0,
-  cursor = true
+  cursor = true,
+  preventAutoScroll = false
 }) => {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,8 +46,8 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         setDisplayText(prev => prev + text[currentIndex]);
         setCurrentIndex(prevIndex => prevIndex + 1);
         
-        // Scroll to the bottom smoothly when new text is added
-        if (containerRef.current) {
+        // Scroll to the bottom smoothly when new text is added, only if not prevented
+        if (!preventAutoScroll && containerRef.current) {
           const parentElement = containerRef.current.closest('.terminal-content');
           if (parentElement) {
             parentElement.scrollTop = parentElement.scrollHeight;
@@ -57,7 +59,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
     } else if (onComplete) {
       onComplete();
     }
-  }, [currentIndex, adjustedSpeed, text, onComplete, started]);
+  }, [currentIndex, adjustedSpeed, text, onComplete, started, preventAutoScroll]);
 
   return (
     <span ref={containerRef} className={className}>
@@ -70,3 +72,4 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
 };
 
 export default TypingEffect;
+

@@ -71,7 +71,7 @@ const Index: React.FC = () => {
               
               <div className="max-w-3xl mx-auto h-[60vh]">
                 <ScrollArea className="h-full">
-                  <Terminal onComplete={handleBootComplete} />
+                  <Terminal onComplete={handleBootComplete} preventAutoScroll={true} />
                 </ScrollArea>
               </div>
               
@@ -131,3 +131,4 @@ const Index: React.FC = () => {
 };
 
 export default Index;
+
