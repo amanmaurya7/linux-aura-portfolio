@@ -14,7 +14,7 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     company: "WeSee",
-    position: "Frontend Developer",
+    position: "Frontend Developer Intern",
     period: "January 2025 – March 2025",
     location: "Tokyo, Japan (Remote)",
     description: [
