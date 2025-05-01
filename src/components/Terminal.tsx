@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import TerminalWindow from "./TerminalWindow";
 import CommandLine from "./CommandLine";
 import TypingEffect from "./TypingEffect";
@@ -11,6 +11,7 @@ interface TerminalProps {
 const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
   const [bootComplete, setBootComplete] = useState(false);
   const [showCommandLine, setShowCommandLine] = useState(false);
+  const terminalContentRef = useRef<HTMLDivElement>(null);
 
   const bootMessages = [
     "Initializing system...",
@@ -23,12 +24,21 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
     "Type 'help' for available commands"
   ];
 
+  // Function to scroll to bottom of terminal
+  const scrollToBottom = () => {
+    if (terminalContentRef.current) {
+      terminalContentRef.current.scrollTop = terminalContentRef.current.scrollHeight;
+    }
+  };
+
   useEffect(() => {
     const bootTimer = setTimeout(() => {
       setBootComplete(true);
+      scrollToBottom();
       
       const commandTimer = setTimeout(() => {
         setShowCommandLine(true);
+        scrollToBottom();
         if (onComplete) {
           onComplete();
         }
@@ -41,7 +51,11 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
   }, [onComplete]);
 
   return (
-    <TerminalWindow title="boot@linux-portfolio:~" className="h-full">
+    <TerminalWindow 
+      title="boot@linux-portfolio:~" 
+      className="h-full"
+      contentRef={terminalContentRef}
+    >
       <div className="space-y-2">
         {!bootComplete ? (
           <>
@@ -65,7 +79,7 @@ const Terminal: React.FC<TerminalProps> = ({ onComplete }) => {
             </div>
           </>
         ) : showCommandLine ? (
-          <CommandLine />
+          <CommandLine onCommandComplete={scrollToBottom} />
         ) : (
           <div className="text-terminal-green animate-fade-in">System ready.</div>
         )}
