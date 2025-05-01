@@ -19,7 +19,7 @@ const projects: Project[] = [
       "Developed a scalable architecture with Pinata API integration for distributed file storage and automated file processing."
     ],
     technologies: ["React.js", "Hardhat", "IPFS", "Pinata API", "Ethereum", "Solidity"],
-    github: "https://github.com/amanmauryahere",
+    github: "https://github.com/amanmaurya7/decen-data",
     link: "https://decendata.vercel.app/"
   },
   {
@@ -29,7 +29,7 @@ const projects: Project[] = [
       "Integrated suggestion features and multi-format saving options to enhance user functionality."
     ],
     technologies: ["WebSockets", "MongoDB", "Express", "React", "Node.js", "Socket.io"],
-    github: "https://github.com/amanmauryahere"
+    github: "https://github.com/amanmaurya7/codoc"
   },
   {
     title: "Kryptonox - A Cryptocurrency Transfer Website",
@@ -38,7 +38,7 @@ const projects: Project[] = [
       "Implemented wallet integration, transaction history, and real-time market data visualization."
     ],
     technologies: ["Blockchain", "Smart Contracts", "Web3.js", "React", "Tailwind CSS"],
-    github: "https://github.com/amanmauryahere",
+    github: "https://github.com/amanmaurya7",
     link: "https://kryptonox.netlify.app/"
   },
 ];
