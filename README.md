@@ -1,6 +1,6 @@
 # Linux Aura Portfolio - Aman Maurya
 
-![Portfolio Preview](public/IMG_1172.JPG)
+![Portfolio Preview]
 
 ## 🌐 [Live Demo: amanengineer.me](https://www.amanengineer.me/)
 
