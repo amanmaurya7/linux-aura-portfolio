@@ -19,5 +19,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  assetsInclude: ["**/*.JPG"], // Add support for uppercase JPG files
+  assetsInclude: ["**/*.jpg"], // Add support for uppercase JPG files
 }));

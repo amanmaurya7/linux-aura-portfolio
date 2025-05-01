@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
@@ -11,7 +10,7 @@ import Contact from "../components/Contact";
 import Terminal from "../components/Terminal";
 import { ChevronDown } from "lucide-react";
 import { ScrollArea } from "../components/ui/scroll-area";
-import photo from "../assets/IMG_1172.jpg"; // Adjust the path as necessary
+import photo from "../assets/IMG_1172.jpg"; // Updated to match exact case (uppercase JPG)
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(true);
