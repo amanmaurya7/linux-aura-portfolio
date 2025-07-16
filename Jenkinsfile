@@ -11,8 +11,8 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'nvm install $NODE_VERSION'
-                sh 'nvm use $NODE_VERSION'
+                sh 'npm install $NODE_VERSION'
+                sh 'npm use $NODE_VERSION'
                 sh 'npm install'
             }
         }
