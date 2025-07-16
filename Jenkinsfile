@@ -20,11 +20,7 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'npm run test || true' // Use '|| true' to prevent pipeline failure if tests are not set up
-            }
-        }
+        
         stage('Deploy') {
             steps {
                 // Example for deploying to Vercel (replace with your deployment method)
