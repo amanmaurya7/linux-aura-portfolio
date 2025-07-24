@@ -21,7 +21,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                // Ensure Vercel CLI is authenticated
                 withCredentials([string(credentialsId: 'vercel-token', variable: 'VERCEL_TOKEN')]) {
                     sh 'vercel --prod --token $VERCEL_TOKEN'
                 }
