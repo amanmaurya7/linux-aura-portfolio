@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    environment {
-        NODE_VERSION = '18' // Adjust based on your project's Node.js version
+    tools {
+        nodejs 'Node18' // Refers to Node.js 18 configured in Global Tool Configuration
     }
     stages {
         stage('Checkout') {
@@ -11,7 +11,6 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install $NODE_VERSION'
                 sh 'npm install'
             }
         }
@@ -20,11 +19,12 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        
         stage('Deploy') {
             steps {
-                // Example for deploying to Vercel (replace with your deployment method)
-                sh 'vercel --prod'
+                // Ensure Vercel CLI is authenticated
+                withCredentials([string(credentialsId: 'vercel-token', variable: 'VERCEL_TOKEN')]) {
+                    sh 'vercel --prod --token $VERCEL_TOKEN'
+                }
             }
         }
     }
