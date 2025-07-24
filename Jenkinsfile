@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'Node18' // Refers to Node.js 18 configured in Global Tool Configuration
+    environment {
+        NODE_VERSION = '18' // Adjust based on your project's Node.js version
     }
     stages {
         stage('Checkout') {
@@ -11,6 +11,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
+                sh 'npm install $NODE_VERSION'
                 sh 'npm install'
             }
         }
