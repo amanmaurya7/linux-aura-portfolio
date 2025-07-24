@@ -9,9 +9,12 @@ pipeline {
                 git branch: 'main', credentialsId: 'githubtoken', url: 'https://github.com/amanmaurya7/linux-aura-portfolio.git'
             }
         }
-        stage('Install Dependencies') {
+        stage('Install Node and Dependencies') {
             steps {
-                sh 'npm install $NODE_VERSION'
+                // Install correct Node version if using nvm or nodeenv (optional)
+                sh 'node -v' // just to check the current version (optional)
+
+                // Install dependencies
                 sh 'npm install'
             }
         }
@@ -23,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([string(credentialsId: 'vercel-token', variable: 'VERCEL_TOKEN')]) {
-                    sh 'vercel --prod --token $VERCEL_TOKEN'
+                    sh 'vercel --prod --token $VERCEL_TOKEN --yes'
                 }
             }
         }
