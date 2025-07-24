@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NODE_VERSION = '18' // Adjust based on your project's Node.js version
+        NODE_VERSION = '18'
     }
     stages {
         stage('Checkout') {
@@ -11,10 +11,9 @@ pipeline {
         }
         stage('Install Node and Dependencies') {
             steps {
-                // Install correct Node version if using nvm or nodeenv (optional)
-                sh 'node -v' // just to check the current version (optional)
+                
+                sh 'node -v'
 
-                // Install dependencies
                 sh 'npm install'
             }
         }
