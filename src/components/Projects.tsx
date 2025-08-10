@@ -13,34 +13,32 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Kavach: A Quantum-Resistant Biometric Data System",
+    description: [
+      "Architected the system for a conceptual blockchain project focused on securing biometric data.",
+      "Conducted a literature survey on quantum-resistant cryptography (CRYSTALS-Kyber/Dilithium) and privacy techniques like zk-SNARKs.",
+      "Outlined a five-layer architecture using React.js, QANplatform, and IPFS to show how such a system could work in theory."
+    ],
+    technologies: ["React.js", "QANplatform", "IPFS", "CRYSTALS-Kyber", "CRYSTALS-Dilithium", "zk-SNARKs", "Blockchain"]
+  },
+  {
+    title: "Placement Power Hub",
+    description: [
+      "Engineered a full-stack app for placement prep with DSA, aptitude, and interview tracking using React, TypeScript, Supabase, and PostgreSQL, enhanced by React Query and Recharts.",
+      "Implemented Supabase Auth, Row Level Security, and Storage for secure, user-friendly data and file management."
+    ],
+    technologies: ["React", "TypeScript", "Supabase", "PostgreSQL", "React Query", "Recharts"],
+    link: "https://placement-power-hub.vercel.app/"
+  },
+  {
     title: "Decentralized File Storage System",
     description: [
       "Built a decentralized file storage platform using React.js, Hardhat and IPFS, implementing end-to-end encryption for secure file management.",
       "Developed a scalable architecture with Pinata API integration for distributed file storage and automated file processing."
     ],
     technologies: ["React.js", "Hardhat", "IPFS", "Pinata API", "Ethereum", "Solidity"],
-    github: "https://github.com/amanmaurya7/decen-data",
     link: "https://decendata.vercel.app/"
-  },
-  {
-    title: "CoDoc: Collaborative Document Editing Redefined",
-    description: [
-      "A real-time collaborative document editor supporting multiple users, secure authentication, and offline document access.",
-      "Integrated suggestion features and multi-format saving options to enhance user functionality."
-    ],
-    technologies: ["WebSockets", "MongoDB", "Express", "React", "Node.js", "Socket.io"],
-    github: "https://github.com/amanmaurya7/codoc"
-  },
-  {
-    title: "Kryptonox - A Cryptocurrency Transfer Website",
-    description: [
-      "Launched a blockchain-based cryptocurrency transfer platform optimized for secure and efficient transactions.",
-      "Implemented wallet integration, transaction history, and real-time market data visualization."
-    ],
-    technologies: ["Blockchain", "Smart Contracts", "Web3.js", "React", "Tailwind CSS"],
-    github: "https://github.com/amanmaurya7",
-    link: "https://kryptonox.netlify.app/"
-  },
+  }
 ];
 
 const Projects: React.FC = () => {
