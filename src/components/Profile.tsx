@@ -13,7 +13,6 @@ interface ProfileProps {
   photo: string;
   linkedIn: string;
   github: string;
-  resume: string;
 }
 
 const Profile: React.FC<ProfileProps> = ({
@@ -24,7 +23,6 @@ const Profile: React.FC<ProfileProps> = ({
   photo,
   linkedIn,
   github,
-  resume
 }) => {
   const [showContent, setShowContent] = useState(false);
   const [loadingComplete, setLoadingComplete] = useState(false);
@@ -76,8 +74,7 @@ const Profile: React.FC<ProfileProps> = ({
   },
   "links": {
     "linkedin": "${linkedIn}",
-    "github": "${github}",
-    "resume": "${resume}"
+    "github": "${github}"
   },
   "bio": "I am eager to connect with like-minded professionals and explore opportunities where I can contribute my technical skills, passion for learning, and drive for excellence. Let's connect and discuss how we can collaborate to drive innovation and achieve remarkable results."
 }`}
@@ -123,16 +120,6 @@ const Profile: React.FC<ProfileProps> = ({
               >
                 <Github size={16} />
                 <span>GitHub</span>
-              </a>
-              <a 
-                href={resume} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn flex items-center gap-2"
-                aria-label="Resume"
-              >
-                <ExternalLink size={16} />
-                <span>Resume</span>
               </a>
             </div>
           </div>
