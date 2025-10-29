@@ -10,6 +10,7 @@ interface AchievementItem {
 }
 
 const achievements: AchievementItem[] = [
+  { title: "Top 100 HackWithInfy 2025", icon: "trophy" },
   { title: "6x Hackathons", icon: "trophy" },
   { title: "Technical Head at TCET – Shastra GFG", icon: "award" },
   { title: "Researcher at TCET – Shastra Coding Club", icon: "star" },
