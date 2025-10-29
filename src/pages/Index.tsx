@@ -96,7 +96,7 @@ const Index: React.FC = () => {
                 name="Aman Maurya"
                 title="Software Developer"
                 location="Mumbai, Maharashtra, India"
-                email="amanmaurya.me@gmail.com"
+                email="amaurya.dev@gmail.com"
                 photo="/IMG_1172.jpg" // Assuming the image is in the public/images folder
                 linkedIn="https://www.linkedin.com/in/amanmaurya-me/"
                 github="https://github.com/amanmaurya7"
