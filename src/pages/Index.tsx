@@ -114,7 +114,7 @@ const Index: React.FC = () => {
               <Awards />
               
               <Contact 
-                email="amanmaurya.me@gmail.com"
+                email="amaurya.dev@gmail.com"
                 location="Mumbai, Maharashtra, India"
                 linkedin="https://www.linkedin.com/in/amanmaurya-me/"
                 github="https://github.com/amanmaurya7"
