@@ -31,5 +31,8 @@ export const appConfigs: any = {
             github: "https://github.com/amanmaurya7"
         }
     },
-    Terminal: { title: "Terminal", component: "Terminal", props: {} }
+    Terminal: { title: "Terminal", component: "Terminal", props: {} },
+    Browser: { title: "Browser", component: "Browser", props: {} },
+    Settings: { title: "Settings", component: "Settings", props: {} },
+    Calculator: { title: "Calculator", component: "Calculator", props: {} }
 };

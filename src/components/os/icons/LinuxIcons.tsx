@@ -109,3 +109,49 @@ export const TerminalIcon = ({ size = 48, className = "" }) => (
         <rect x="24" y="20" width="12" height="4" fill="white" opacity="0.8" />
     </svg>
 );
+
+export const BrowserIcon = ({ size = 48, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="26" fill="#F44336" />
+        <circle cx="32" cy="32" r="20" fill="#FFEB3B" />
+        <circle cx="32" cy="32" r="14" fill="#4CAF50" />
+        <circle cx="32" cy="32" r="8" fill="#2196F3" />
+        <path d="M32 6 A 26 26 0 0 1 32 58" fill="none" stroke="white" strokeWidth="2" opacity="0.2" />
+        <path d="M6 32 A 26 26 0 0 1 58 32" fill="none" stroke="white" strokeWidth="2" opacity="0.2" />
+    </svg>
+);
+
+export const SettingsIcon = ({ size = 48, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="26" fill="#607D8B" />
+        <circle cx="32" cy="32" r="20" fill="#455A64" />
+        <circle cx="32" cy="32" r="16" fill="#37474F" />
+        <circle cx="32" cy="32" r="10" fill="#263238" />
+        <path d="M32 12 L32 20 M32 44 L32 52 M12 32 L20 32 M44 32 L52 32" stroke="#90A4AE" strokeWidth="4" strokeLinecap="round" />
+        <path d="M18 18 L24 24 M40 40 L46 46 M18 46 L24 40 M40 24 L46 18" stroke="#90A4AE" strokeWidth="4" strokeLinecap="round" />
+    </svg>
+);
+
+export const CalculatorIcon = ({ size = 48, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="8" width="40" height="48" rx="6" fill="#FFC107" />
+        <rect x="16" y="12" width="32" height="12" rx="2" fill="#FFF8E1" />
+        <rect x="16" y="28" width="8" height="8" rx="2" fill="#F57F17" />
+        <rect x="28" y="28" width="8" height="8" rx="2" fill="#F57F17" />
+        <rect x="40" y="28" width="8" height="8" rx="2" fill="#F57F17" />
+        <rect x="16" y="40" width="8" height="8" rx="2" fill="#F57F17" />
+        <rect x="28" y="40" width="8" height="8" rx="2" fill="#F57F17" />
+        <rect x="40" y="40" width="8" height="8" rx="2" fill="#F57F17" />
+    </svg>
+);
+
+export const NotesIcon = ({ size = 48, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="8" width="40" height="48" rx="4" fill="#FFEB3B" />
+        <path d="M12 20 L52 20" stroke="#FBC02D" strokeWidth="2" />
+        <path d="M12 30 L52 30" stroke="#FBC02D" strokeWidth="2" />
+        <path d="M12 40 L52 40" stroke="#FBC02D" strokeWidth="2" />
+        <path d="M12 50 L52 50" stroke="#FBC02D" strokeWidth="2" />
+        <rect x="12" y="8" width="40" height="12" rx="4" fill="#FBC02D" />
+    </svg>
+);

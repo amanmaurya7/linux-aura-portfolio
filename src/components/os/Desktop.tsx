@@ -4,7 +4,7 @@ import { useOS } from "@/context/OSContext";
 import Window from "./Window";
 import Taskbar from "./Taskbar";
 import AppContainer from "./AppContainer"; // New component
-import { UserHomeIcon, ExperienceIcon, ProjectsIcon, SkillsIcon, EducationIcon, AwardsIcon, ContactIcon, TerminalIcon } from "./icons/LinuxIcons";
+import { UserHomeIcon, ExperienceIcon, ProjectsIcon, SkillsIcon, EducationIcon, AwardsIcon, ContactIcon, TerminalIcon, BrowserIcon, SettingsIcon, CalculatorIcon } from "./icons/LinuxIcons";
 import { appConfigs } from "@/config/apps";
 
 // Apps
@@ -16,6 +16,9 @@ import Education from "../Education";
 import Awards from "../Awards";
 import Contact from "../Contact";
 import TerminalApp from "./apps/TerminalApp";
+import BrowserApp from "./apps/BrowserApp";
+import SettingsApp from "./apps/SettingsApp";
+import CalculatorApp from "./apps/CalculatorApp";
 
 const componentMap: any = {
     Profile: Profile,
@@ -25,11 +28,14 @@ const componentMap: any = {
     Education: Education,
     Awards: Awards,
     Contact: Contact,
-    Terminal: TerminalApp
+    Terminal: TerminalApp,
+    Browser: BrowserApp,
+    Settings: SettingsApp,
+    Calculator: CalculatorApp
 };
 
 const Desktop = () => {
-    const { windows, launchApp } = useOS();
+    const { windows, launchApp, wallpaper } = useOS();
 
     // Desktop Icons
     const icons = [
@@ -41,6 +47,9 @@ const Desktop = () => {
         { label: "Awards", icon: AwardsIcon, app: "Awards" },
         { label: "Contact", icon: ContactIcon, app: "Contact" },
         { label: "Terminal", icon: TerminalIcon, app: "Terminal" },
+        { label: "Browser", icon: BrowserIcon, app: "Browser" },
+        { label: "Settings", icon: SettingsIcon, app: "Settings" },
+        { label: "Calculator", icon: CalculatorIcon, app: "Calculator" },
     ];
 
     const handleLaunch = (appName: string) => {
@@ -53,7 +62,7 @@ const Desktop = () => {
     };
 
     return (
-        <div className="h-screen w-screen relative overflow-hidden font-sans select-none bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1974')" }}>
+        <div className="h-screen w-screen relative overflow-hidden font-sans select-none bg-cover bg-center" style={{ backgroundImage: `url('${wallpaper}')` }}>
             {/* Overlay to darken background slightly for better readability */}
             <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 

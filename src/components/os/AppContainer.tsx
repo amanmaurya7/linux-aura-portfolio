@@ -8,11 +8,14 @@ interface AppContainerProps {
 }
 
 const AppContainer: React.FC<AppContainerProps> = ({ children, window }) => {
-    const isTerminal = window.component === 'Terminal';
+    const [refreshKey, setRefreshKey] = React.useState(0);
+    const shouldHideHeader = window.component === 'Terminal' || window.component === 'Browser' || window.component === 'Calculator';
 
-    // If terminal, it handles its own output (although we might want to standardize even Terminal windows eventually, 
-    // but for now let's keep the raw terminal feel for the actual Terminal app)
-    if (isTerminal) return <div className="h-full w-full bg-[#1E1E1E]">{children}</div>;
+    if (shouldHideHeader) return <div className="h-full w-full bg-[#1E1E1E] flex flex-col">{children}</div>;
+
+    const handleRefresh = () => {
+        setRefreshKey(prev => prev + 1);
+    };
 
     return (
         <div className="flex flex-col h-full bg-[#1E1E1E] text-gray-200 font-sans">
@@ -21,16 +24,16 @@ const AppContainer: React.FC<AppContainerProps> = ({ children, window }) => {
 
                 {/* Navigation Buttons */}
                 <div className="flex items-center space-x-2">
-                    <button className="p-1.5 rounded-md hover:bg-[#444] text-gray-400 hover:text-white transition-colors">
+                    <button disabled className="p-1.5 rounded-md text-gray-600 cursor-not-allowed">
                         <ArrowLeft size={18} />
                     </button>
-                    <button className="p-1.5 rounded-md hover:bg-[#444] text-gray-500 transition-colors cursor-not-allowed">
+                    <button disabled className="p-1.5 rounded-md text-gray-600 cursor-not-allowed">
                         <ArrowRight size={18} />
                     </button>
-                    <button className="p-1.5 rounded-md hover:bg-[#444] text-gray-400 hover:text-white transition-colors">
+                    <button onClick={handleRefresh} className="p-1.5 rounded-md hover:bg-[#444] text-gray-400 hover:text-white transition-colors active:bg-[#555]">
                         <RotateCw size={18} />
                     </button>
-                    <button className="p-1.5 rounded-md hover:bg-[#444] text-gray-400 hover:text-white transition-colors ml-1">
+                    <button disabled className="p-1.5 rounded-md text-gray-600 cursor-not-allowed ml-1">
                         <Home size={18} />
                     </button>
                 </div>
@@ -41,7 +44,7 @@ const AppContainer: React.FC<AppContainerProps> = ({ children, window }) => {
                         <Search size={14} />
                     </span>
                     <div className="flex items-center space-x-1">
-                        <span className="hover:underline cursor-pointer text-gray-400">Home</span>
+                        <span className="text-gray-400">Home</span>
                         <ChevronRight size={14} className="text-gray-600" />
                         <span className="font-medium text-gray-200">{window.title}</span>
                     </div>
@@ -56,7 +59,7 @@ const AppContainer: React.FC<AppContainerProps> = ({ children, window }) => {
             {/* Main Content Area */}
             <div className="flex-1 overflow-auto bg-[#1E1E1E] scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
                 {/* Inner Content Padding Wrapper - mimics a standardized page layout */}
-                <div className="p-6 md:p-8 max-w-7xl mx-auto w-full animate-fade-in">
+                <div key={refreshKey} className="p-6 md:p-8 max-w-7xl mx-auto w-full animate-fade-in">
                     {children}
                 </div>
             </div>

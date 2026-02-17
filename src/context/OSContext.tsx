@@ -18,6 +18,8 @@ interface OSContextType {
     logout: () => void;
     isLocked: boolean;
     setIsLocked: (value: boolean) => void;
+    wallpaper: string;
+    setWallpaper: (url: string) => void;
 }
 
 const OSContext = createContext<OSContextType | undefined>(undefined);
@@ -28,6 +30,8 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
     const [isBooting, setIsBooting] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLocked, setIsLocked] = useState(false);
+
+    const [wallpaper, setWallpaper] = useState("https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1974");
 
     const setBootComplete = () => setIsBooting(false);
     const login = () => {
@@ -102,6 +106,8 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
                 logout,
                 isLocked,
                 setIsLocked,
+                wallpaper,
+                setWallpaper
             }}
         >
             {children}

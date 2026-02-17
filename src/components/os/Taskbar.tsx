@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useOS } from "@/context/OSContext";
 import { Menu, Wifi, Battery, Volume2, Search, Maximize2, Minimize2, X, ChevronUp, Bell, Calendar as CalendarIcon, Power } from "lucide-react";
-import { UserHomeIcon, ExperienceIcon, ProjectsIcon, SkillsIcon, EducationIcon, AwardsIcon, ContactIcon, TerminalIcon } from "./icons/LinuxIcons";
+import { UserHomeIcon, ExperienceIcon, ProjectsIcon, SkillsIcon, EducationIcon, AwardsIcon, ContactIcon, TerminalIcon, BrowserIcon, SettingsIcon, CalculatorIcon } from "./icons/LinuxIcons";
 import { appConfigs } from "@/config/apps";
 
 const Taskbar = () => {
@@ -71,6 +71,9 @@ const Taskbar = () => {
         { id: "Awards", label: "Awards", icon: AwardsIcon },
         { id: "Contact", label: "Contact", icon: ContactIcon },
         { id: "Terminal", label: "Terminal", icon: TerminalIcon },
+        { id: "Browser", label: "Browser", icon: BrowserIcon },
+        { id: "Settings", label: "Settings", icon: SettingsIcon },
+        { id: "Calculator", label: "Calculator", icon: CalculatorIcon },
     ];
 
     const filteredApps = apps.filter(app =>
