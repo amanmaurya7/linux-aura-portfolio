@@ -35,74 +35,58 @@ const educations: Education[] = [
 
 const Education: React.FC = () => {
   return (
-    <section id="education" className="py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="section-title mb-8">Education</h2>
-        
-        <TerminalWindow title="aman@linux:~/education">
-          <div className="space-y-4">
-            <div className="console-line">
-              <span className="command-prompt">aman@linux:~/education$</span>
-              <span className="text-terminal-amber">cat academic_records.md | more</span>
-            </div>
-            
-            <div className="space-y-8">
-              {educations.map((edu, index) => (
-                <div 
-                  key={index} 
-                  className="card hover:border-terminal-amber/50 transition-all duration-300 animate-fade-in"
-                  style={{ animationDelay: `${index * 0.3}s` }}
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-terminal-dark rounded-md">
-                      <GraduationCap size={20} className="text-terminal-amber" />
-                    </div>
-                    <h3 className="text-terminal-amber font-semibold">{edu.degree}</h3>
-                  </div>
-                  
-                  <div className="mt-3 pl-12">
-                    <div className="text-terminal-text">{edu.institution}</div>
-                    
-                    <div className="flex items-center mt-1 text-sm text-terminal-text/70">
-                      <Calendar size={14} className="mr-2" />
-                      <span>{edu.period}</span>
-                    </div>
-                    
-                    {edu.grade && (
-                      <div className="flex items-center mt-1 text-sm text-terminal-green">
-                        <Award size={14} className="mr-2" />
-                        <span>{edu.grade}</span>
-                      </div>
-                    )}
-                    
-                    {edu.courses && edu.courses.length > 0 && (
-                      <div className="mt-3">
-                        <h4 className="text-terminal-text/70 text-xs mb-2">RELEVANT COURSEWORK:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {edu.courses.map((course, i) => (
-                            <span 
-                              key={i} 
-                              className="text-xs px-2 py-1 bg-terminal-dark/70 rounded border border-terminal-amber/20 text-terminal-amber/80"
-                            >
-                              {course}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
+    <div className="h-full w-full">
+      <div className="space-y-4">
+        <div className="space-y-8">
+          {educations.map((edu, index) => (
+            <div
+              key={index}
+              className="card hover:border-terminal-amber/50 transition-all duration-300 animate-fade-in"
+              style={{ animationDelay: `${index * 0.3}s` }}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-terminal-dark rounded-md">
+                  <GraduationCap size={20} className="text-terminal-amber" />
                 </div>
-              ))}
+                <h3 className="text-terminal-amber font-semibold">{edu.degree}</h3>
+              </div>
+
+              <div className="mt-3 pl-12">
+                <div className="text-terminal-text">{edu.institution}</div>
+
+                <div className="flex items-center mt-1 text-sm text-terminal-text/70">
+                  <Calendar size={14} className="mr-2" />
+                  <span>{edu.period}</span>
+                </div>
+
+                {edu.grade && (
+                  <div className="flex items-center mt-1 text-sm text-terminal-green">
+                    <Award size={14} className="mr-2" />
+                    <span>{edu.grade}</span>
+                  </div>
+                )}
+
+                {edu.courses && edu.courses.length > 0 && (
+                  <div className="mt-3">
+                    <h4 className="text-terminal-text/70 text-xs mb-2">RELEVANT COURSEWORK:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.courses.map((course, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-2 py-1 bg-terminal-dark/70 rounded border border-terminal-amber/20 text-terminal-amber/80"
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-            
-            <div className="console-line">
-              <span className="command-prompt">aman@linux:~/education$</span>
-              <span className="cursor"></span>
-            </div>
-          </div>
-        </TerminalWindow>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

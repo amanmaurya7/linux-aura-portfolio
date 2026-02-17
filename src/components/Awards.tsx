@@ -38,55 +38,39 @@ const getRandomDelay = () => {
 
 const Awards: React.FC = () => {
   return (
-    <section id="awards" className="py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="section-title mb-8">Awards & Achievements</h2>
-        
-        <TerminalWindow title="aman@linux:~/achievements">
-          <div className="space-y-4">
-            <div className="console-line">
-              <span className="command-prompt">aman@linux:~/achievements$</span>
-              <span className="text-terminal-amber">find . -name "award_*.txt" | xargs cat</span>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {achievements.map((item, index) => {
-                const IconComponent = iconComponents[item.icon];
-                const iconColors = {
-                  trophy: "text-terminal-amber",
-                  award: "text-terminal-purple",
-                  star: "text-terminal-cyan",
-                  medal: "text-terminal-green"
-                };
-                
-                return (
-                  <div
-                    key={index}
-                    className="card hover:border-terminal-amber/50 transition-all duration-300 animate-fade-in flex items-start"
-                    style={{ animationDelay: `${getRandomDelay()}s` }}
-                  >
-                    <div className={`p-2 bg-terminal-dark rounded-md mr-3 ${iconColors[item.icon]}`}>
-                      <IconComponent size={16} />
-                    </div>
-                    <div>
-                      <div className="text-terminal-text text-sm">{item.title}</div>
-                      {item.date && (
-                        <div className="text-terminal-text/50 text-xs mt-1">{item.date}</div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            
-            <div className="console-line">
-              <span className="command-prompt">aman@linux:~/achievements$</span>
-              <span className="cursor"></span>
-            </div>
-          </div>
-        </TerminalWindow>
+    <div className="h-full w-full">
+      <div className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {achievements.map((item, index) => {
+            const IconComponent = iconComponents[item.icon];
+            const iconColors = {
+              trophy: "text-terminal-amber",
+              award: "text-terminal-purple",
+              star: "text-terminal-cyan",
+              medal: "text-terminal-green"
+            };
+
+            return (
+              <div
+                key={index}
+                className="card hover:border-terminal-amber/50 transition-all duration-300 animate-fade-in flex items-start"
+                style={{ animationDelay: `${getRandomDelay()}s` }}
+              >
+                <div className={`p-2 bg-terminal-dark rounded-md mr-3 ${iconColors[item.icon]}`}>
+                  <IconComponent size={16} />
+                </div>
+                <div>
+                  <div className="text-terminal-text text-sm">{item.title}</div>
+                  {item.date && (
+                    <div className="text-terminal-text/50 text-xs mt-1">{item.date}</div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -48,8 +48,8 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
             props,
             minimized: false,
             maximized: false,
-            position: { x: 50 + windows.length * 20, y: 50 + windows.length * 20 },
-            size: { width: 800, height: 600 },
+            position: { x: 200 + windows.length * 40, y: 50 + windows.length * 40 },
+            size: { width: 900, height: 600 },
             zIndex: windows.length + 1,
         };
         setWindows([...windows, newWindow]);
