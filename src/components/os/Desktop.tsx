@@ -4,7 +4,7 @@ import { useOS } from "@/context/OSContext";
 import Window from "./Window";
 import Taskbar from "./Taskbar";
 import AppContainer from "./AppContainer"; // New component
-import { File, Folder, Terminal, Monitor, Code, User, Briefcase, Mail, Award, BookOpen } from "lucide-react";
+import { UserHomeIcon, ExperienceIcon, ProjectsIcon, SkillsIcon, EducationIcon, AwardsIcon, ContactIcon, TerminalIcon } from "./icons/LinuxIcons";
 import { appConfigs } from "@/config/apps";
 
 // Apps
@@ -33,14 +33,14 @@ const Desktop = () => {
 
     // Desktop Icons
     const icons = [
-        { label: "About Me", icon: User, app: "Profile" },
-        { label: "Experience", icon: Briefcase, app: "Experience" },
-        { label: "Projects", icon: Code, app: "Projects" },
-        { label: "Skills", icon: Monitor, app: "Skills" },
-        { label: "Education", icon: BookOpen, app: "Education" },
-        { label: "Awards", icon: Award, app: "Awards" },
-        { label: "Contact", icon: Mail, app: "Contact" },
-        { label: "Terminal", icon: Terminal, app: "Terminal" },
+        { label: "About Me", icon: UserHomeIcon, app: "Profile" },
+        { label: "Experience", icon: ExperienceIcon, app: "Experience" },
+        { label: "Projects", icon: ProjectsIcon, app: "Projects" },
+        { label: "Skills", icon: SkillsIcon, app: "Skills" },
+        { label: "Education", icon: EducationIcon, app: "Education" },
+        { label: "Awards", icon: AwardsIcon, app: "Awards" },
+        { label: "Contact", icon: ContactIcon, app: "Contact" },
+        { label: "Terminal", icon: TerminalIcon, app: "Terminal" },
     ];
 
     const handleLaunch = (appName: string) => {
