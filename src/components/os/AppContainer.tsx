@@ -19,8 +19,8 @@ const AppContainer: React.FC<AppContainerProps> = ({ children, window }) => {
 
     return (
         <div className="flex flex-col h-full bg-[#1E1E1E] text-gray-200 font-sans">
-            {/* Toolbar / Navigation Bar */}
-            <div className="h-12 bg-[#333] border-b border-[#111] flex items-center px-4 space-x-4 shadow-md z-10">
+            {/* Toolbar / Navigation Bar - Hidden on mobile to save space, rely on Window title */}
+            <div className="hidden md:flex h-12 bg-[#333] border-b border-[#111] items-center px-4 space-x-4 shadow-md z-10">
 
                 {/* Navigation Buttons */}
                 <div className="flex items-center space-x-2">

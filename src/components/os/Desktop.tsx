@@ -36,6 +36,15 @@ const componentMap: any = {
 
 const Desktop = () => {
     const { windows, launchApp, wallpaper } = useOS();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        const handleResize = () => checkMobile();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Desktop Icons
     const icons = [
@@ -67,19 +76,19 @@ const Desktop = () => {
             <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
             {/* Desktop Icons Grid */}
-            {/* Desktop Icons Grid */}
-            <div className="absolute top-4 left-4 bottom-14 flex flex-col flex-wrap content-start items-start gap-4 p-2 z-0 max-w-full overflow-hidden">
+            <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bottom-16 flex flex-col flex-wrap content-start items-start gap-2 sm:gap-4 p-2 z-0 max-w-full overflow-x-auto scrollbar-hide mask-fade-right">
                 {icons.map((icon) => (
                     <div
                         key={icon.label}
-                        className="flex flex-col items-center justify-center p-2 rounded-md hover:bg-white/10 transition-colors group cursor-pointer active:scale-95 w-24 h-28"
-                        onDoubleClick={() => handleLaunch(icon.app)}
+                        className="flex flex-col items-center justify-center p-2 rounded-md hover:bg-white/10 transition-colors group cursor-pointer active:scale-95 w-20 h-24 sm:w-24 sm:h-28 shrink-0 select-none"
+                        onDoubleClick={() => !isMobile && handleLaunch(icon.app)}
+                        onClick={() => isMobile && handleLaunch(icon.app)}
                     >
-                        <div className="w-14 h-14 bg-gradient-to-br from-white/10 to-white/5 rounded-xl flex items-center justify-center mb-2 shadow-lg backdrop-blur-sm border border-white/10 relative group-hover:border-white/30 transition-all">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-white/10 to-white/5 rounded-xl flex items-center justify-center mb-2 shadow-lg backdrop-blur-sm border border-white/10 relative group-hover:border-white/30 transition-all">
                             <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                            <icon.icon className="text-white drop-shadow-md" size={32} />
+                            <icon.icon className="text-white drop-shadow-md" size={28} />
                         </div>
-                        <span className="text-white text-xs text-center font-medium drop-shadow-md px-1 rounded-sm line-clamp-2 leading-tight select-none">
+                        <span className="text-white text-[10px] sm:text-xs text-center font-medium drop-shadow-md px-1 rounded-sm line-clamp-2 leading-tight select-none bg-black/20 sm:bg-transparent rounded">
                             {icon.label}
                         </span>
                     </div>

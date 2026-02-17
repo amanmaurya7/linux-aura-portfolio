@@ -263,10 +263,10 @@ const SettingsApp = () => {
     }
 
     return (
-        <div className="flex h-full bg-[#1C1C1E] text-white font-sans overflow-hidden">
+        <div className="flex flex-col md:flex-row h-full bg-[#1C1C1E] text-white font-sans overflow-hidden">
             {/* Sidebar */}
-            <div className="w-64 bg-[#2C2C2E]/50 border-r border-[#3A3A3C] flex flex-col">
-                <div className="p-4">
+            <div className="w-full md:w-64 bg-[#2C2C2E]/50 border-b md:border-b-0 md:border-r border-[#3A3A3C] flex flex-col shrink-0">
+                <div className="p-4 hidden md:block">
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={14} />
                         <input
@@ -276,24 +276,25 @@ const SettingsApp = () => {
                         />
                     </div>
                 </div>
-                <div className="flex-1 overflow-y-auto px-2 space-y-1 scrollbar-hide py-2">
+                <div className="flex-1 overflow-x-auto md:overflow-y-auto px-2 flex flex-row md:flex-col space-x-2 md:space-x-0 md:space-y-1 scrollbar-hide py-2 items-center md:items-stretch">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`w-full flex items-center px-3 py-2 rounded-lg text-sm transition-colors ${activeTab === tab.id ? 'bg-blue-600 text-white font-medium' : 'hover:bg-[#3A3A3C] text-gray-300'}`}
+                            className={`flex items-center px-3 py-2 rounded-lg text-sm transition-colors shrink-0 whitespace-nowrap ${activeTab === tab.id ? 'bg-blue-600 text-white font-medium' : 'hover:bg-[#3A3A3C] text-gray-300'}`}
                         >
-                            <tab.icon size={18} className="mr-3" />
-                            <span className="flex-1 text-left">{tab.label}</span>
-                            {activeTab === tab.id && <ChevronRight size={14} />}
+                            <tab.icon size={18} className="mr-0 md:mr-3" />
+                            <span className="hidden md:inline flex-1 text-left">{tab.label}</span>
+                            <span className="inline md:hidden ml-2">{tab.label}</span>
+                            {activeTab === tab.id && <ChevronRight size={14} className="hidden md:block" />}
                         </button>
                     ))}
                 </div>
             </div>
 
             {/* Content */}
-            <div className="flex-1 bg-[#1C1C1E] p-8 overflow-y-auto">
-                <h1 className="text-2xl font-bold mb-6">{tabs.find(t => t.id === activeTab)?.label}</h1>
+            <div className="flex-1 bg-[#1C1C1E] p-4 md:p-8 overflow-y-auto">
+                <h1 className="text-2xl font-bold mb-6 hidden md:block">{tabs.find(t => t.id === activeTab)?.label}</h1>
                 {renderContent()}
             </div>
         </div>

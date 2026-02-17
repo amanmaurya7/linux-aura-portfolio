@@ -10,69 +10,82 @@ interface WindowProps {
     children: React.ReactNode;
 }
 
-const Window: React.FC<WindowProps> = ({ window, children }) => {
+const Window: React.FC<WindowProps> = ({ window: winState, children }) => {
     const { closeWindow, minimizeWindow, maximizeWindow, focusWindow } = useOS();
     const nodeRef = useRef(null);
+    const [isMobile, setIsMobile] = React.useState(false);
 
-    if (window.minimized) return null;
+    React.useEffect(() => {
+        // Use global window object
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        const handleResize = () => checkMobile();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
-    // We treat all windows with the same "Terminal" style now, per user request.
-    // Except maybe the actual Terminal component might have some slight variations if needed,
-    // but the user wants "this window code pallate" applied.
+    if (winState.minimized) return null;
+
+    const isMaximized = winState.maximized || isMobile;
 
     return (
         <Draggable
-            handle=".window-header" // Dragging handle
+            handle=".window-header"
             nodeRef={nodeRef}
-            onStart={() => focusWindow(window.id)}
-            disabled={window.maximized}
+            onStart={() => focusWindow(winState.id)}
+            disabled={isMaximized}
         >
             <div
                 ref={nodeRef}
                 className={`fixed flex flex-col shadow-2xl overflow-hidden backdrop-blur-md transition-all duration-200 font-sans
-         ${window.maximized ? 'inset-0 w-full h-full rounded-none' : 'rounded-lg border border-[#333]'}`}
+         ${isMaximized ? 'inset-0 w-full h-full rounded-none' : 'rounded-lg border border-[#333]'}`}
                 style={{
-                    width: window.maximized ? '100%' : window.size.width,
-                    height: window.maximized ? '100%' : window.size.height,
-                    zIndex: window.zIndex,
-                    left: window.maximized ? 0 : window.position.x,
-                    top: window.maximized ? 0 : window.position.y,
-                    backgroundColor: '#1E1E1E', // Dark window body
+                    width: isMaximized ? '100%' : winState.size.width,
+                    zIndex: winState.zIndex,
+                    left: isMaximized ? 0 : winState.position.x,
+                    top: isMaximized ? 0 : winState.position.y,
+                    backgroundColor: '#1E1E1E',
                     boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+                    // On mobile, account for taskbar height (bottom-12) if we want to not cover it, 
+                    // or just cover it. Usually desktop OS windows cover everything except maybe taskbar. 
+                    // For now, let's let it be standard full screen, but maybe add bottom padding for taskbar if needed.
+                    bottom: isMobile ? '3rem' : undefined, // 3rem = 12 = 48px taskbar height
+                    height: isMobile ? 'auto' : (isMaximized ? '100%' : winState.size.height),
                 }}
-                onClick={() => focusWindow(window.id)}
+                onClick={() => focusWindow(winState.id)}
             >
                 <div
                     className="window-header h-12 flex items-center px-4 bg-[#2C2C2C] select-none border-b border-[#111]"
-                    onDoubleClick={() => maximizeWindow(window.id)}
+                    onDoubleClick={() => maximizeWindow(winState.id)}
                 >
-                    {/* Left spacer for balance */}
-                    <div className="w-14"></div>
+                    {/* Window Controls (Left side on macOS/Linux style, or Right). Let's keep them on Right as per previous file but maybe adjust for mobile */}
 
-                    {/* Center: Title (Standard GUI Style) */}
-                    <div className="flex-1 text-center text-sm text-gray-300 font-medium tracking-wide">
-                        {window.title}
+                    {/* Left spacer or title */}
+                    <div className="flex-1 text-left md:text-center text-sm text-gray-300 font-medium tracking-wide truncate pr-2">
+                        {winState.title}
                     </div>
 
-                    {/* Right: Window Controls (Linux/Windows style) */}
-                    <div className="flex items-center space-x-2 ml-4 group">
+                    {/* Right: Window Controls */}
+                    <div className="flex items-center space-x-2 ml-4">
                         <button
-                            onClick={(e) => { e.stopPropagation(); minimizeWindow(window.id); }}
-                            className="w-3.5 h-3.5 rounded-full bg-[#FFBD2E] hover:bg-[#FFBD2E]/80 border border-[#DEA123] transition-colors flex items-center justify-center"
+                            onClick={(e) => { e.stopPropagation(); minimizeWindow(winState.id); }}
+                            className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
                         >
-                            <Minus size={8} className="text-[#995d0d] opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={3} />
+                            <Minus size={16} className="text-gray-400" />
                         </button>
+                        {!isMobile && (
+                            <button
+                                onClick={(e) => { e.stopPropagation(); maximizeWindow(winState.id); }}
+                                className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
+                            >
+                                <Square size={14} className="text-gray-400" />
+                            </button>
+                        )}
                         <button
-                            onClick={(e) => { e.stopPropagation(); maximizeWindow(window.id); }}
-                            className="w-3.5 h-3.5 rounded-full bg-[#27C93F] hover:bg-[#27C93F]/80 border border-[#1AAB29] transition-colors flex items-center justify-center"
+                            onClick={(e) => { e.stopPropagation(); closeWindow(winState.id); }}
+                            className="p-1.5 hover:bg-red-500/20 hover:text-red-400 rounded-full transition-colors text-gray-400"
                         >
-                            <Square size={6} className="text-[#0a6617] opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" />
-                        </button>
-                        <button
-                            onClick={(e) => { e.stopPropagation(); closeWindow(window.id); }}
-                            className="w-3.5 h-3.5 rounded-full bg-[#FF5F56] hover:bg-[#FF5F56]/80 border border-[#E0443E] transition-colors flex items-center justify-center"
-                        >
-                            <X size={8} className="text-[#8e0e0e] opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={3} />
+                            <X size={16} />
                         </button>
                     </div>
                 </div>

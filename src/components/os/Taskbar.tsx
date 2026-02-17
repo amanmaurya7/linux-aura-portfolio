@@ -86,7 +86,7 @@ const Taskbar = () => {
             {isStartOpen && (
                 <div
                     ref={menuRef}
-                    className="absolute bottom-14 left-4 w-96 h-[500px] bg-gray-900/95 backdrop-blur-xl rounded-xl border border-white/10 shadow-2xl z-[10000] flex flex-col overflow-hidden animate-slide-up origin-bottom-left"
+                    className="absolute bottom-14 left-2 right-2 sm:right-auto sm:left-4 sm:w-96 h-[500px] max-h-[60vh] bg-gray-900/95 backdrop-blur-xl rounded-xl border border-white/10 shadow-2xl z-[10000] flex flex-col overflow-hidden animate-slide-up origin-bottom-left"
                 >
                     {/* Search Area */}
                     <div className="p-4 border-b border-white/5">
@@ -108,7 +108,7 @@ const Taskbar = () => {
                         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-1">
                             {searchQuery ? "Search Results" : "All Applications"}
                         </h3>
-                        <div className="grid grid-cols-4 gap-4">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
                             {filteredApps.map((app) => (
                                 <button
                                     key={app.id}
@@ -124,7 +124,7 @@ const Taskbar = () => {
                                 </button>
                             ))}
                             {filteredApps.length === 0 && (
-                                <div className="col-span-4 text-center py-8 text-gray-500 text-sm">
+                                <div className="col-span-3 sm:col-span-4 text-center py-8 text-gray-500 text-sm">
                                     No apps found for "{searchQuery}"
                                 </div>
                             )}
@@ -153,7 +153,7 @@ const Taskbar = () => {
             {isCalendarOpen && (
                 <div
                     ref={calendarRef}
-                    className="absolute bottom-14 right-4 w-80 bg-gray-900/95 backdrop-blur-xl rounded-xl border border-white/10 shadow-2xl z-[10000] p-4 animate-slide-up origin-bottom-right"
+                    className="absolute bottom-14 right-2 sm:right-4 w-72 sm:w-80 bg-gray-900/95 backdrop-blur-xl rounded-xl border border-white/10 shadow-2xl z-[10000] p-4 animate-slide-up origin-bottom-right"
                 >
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-lg font-semibold text-white">
@@ -194,7 +194,7 @@ const Taskbar = () => {
             {isControlCenterOpen && (
                 <div
                     ref={controlRef}
-                    className="absolute bottom-14 right-4 w-72 bg-gray-900/95 backdrop-blur-xl rounded-xl border border-white/10 shadow-2xl z-[10000] p-4 animate-slide-up origin-bottom-right"
+                    className="absolute bottom-14 right-2 sm:right-4 w-72 bg-gray-900/95 backdrop-blur-xl rounded-xl border border-white/10 shadow-2xl z-[10000] p-4 animate-slide-up origin-bottom-right"
                 >
                     <div className="grid grid-cols-2 gap-3 mb-4">
                         <button className="flex flex-col items-center justify-center p-3 rounded-xl bg-green-500 text-white transition-opacity hover:opacity-90">
@@ -228,9 +228,9 @@ const Taskbar = () => {
             )}
 
             {/* Taskbar Bar */}
-            <div className="absolute bottom-0 w-full h-12 bg-gray-900/80 backdrop-blur-md border-t border-white/10 flex items-center px-4 justify-between z-[9999]">
+            <div className="absolute bottom-0 w-full h-12 bg-gray-900/80 backdrop-blur-md border-t border-white/10 flex items-center px-2 sm:px-4 justify-between z-[9999]">
                 {/* Start Button & Search */}
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3 shrink-0">
                     <button
                         ref={startButtonRef}
                         onClick={toggleStartMenu}
@@ -256,7 +256,7 @@ const Taskbar = () => {
                 </div>
 
                 {/* Active Windows / Pinned Apps */}
-                <div className="flex-1 flex justify-center space-x-2 px-4">
+                <div className="flex-1 flex justify-center space-x-2 px-2 overflow-x-auto scrollbar-hide mask-fade-sides">
                     {/* Show pinned apps or generic icons if no windows, but here we just show windows as requested for 'taskbar' feel */}
                     {windows.map((win) => {
                         const app = apps.find(a => a.id === win.component) || { icon: TerminalIcon }; // Fallback
@@ -271,7 +271,7 @@ const Taskbar = () => {
                                     }
                                 }}
                                 className={`
-                                    relative p-2 rounded-md flex items-center justify-center transition-all duration-200 group
+                                    relative p-2 rounded-md flex items-center justify-center transition-all duration-200 group shrink-0
                                     ${activeWindowId === win.id && !win.minimized ? 'bg-white/10' : 'hover:bg-white/5'}
                                 `}
                                 title={win.title}
@@ -287,7 +287,7 @@ const Taskbar = () => {
                 </div>
 
                 {/* System Tray */}
-                <div className="flex items-center space-x-2 sm:space-x-3 text-white cursor-default">
+                <div className="flex items-center space-x-2 sm:space-x-3 text-white cursor-default shrink-0">
                     <button
                         onClick={() => { setIsControlCenterOpen(!isControlCenterOpen); setIsCalendarOpen(false); setIsStartOpen(false); }}
                         className={`flex items-center space-x-2 px-2 py-1 rounded-md transition-colors ${isControlCenterOpen ? 'bg-white/10' : 'hover:bg-white/5'}`}
