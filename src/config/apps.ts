@@ -1,5 +1,5 @@
 
-import photo from "../assets/IMG_1172.jpg";
+import photo from "../assets/IMG_1172.jpeg";
 
 export const appConfigs: any = {
     Profile: {

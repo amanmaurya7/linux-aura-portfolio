@@ -53,9 +53,9 @@ const Desktop = () => {
     };
 
     return (
-        <div className="h-screen w-screen relative overflow-hidden font-sans select-none bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')" }}>
+        <div className="h-screen w-screen relative overflow-hidden font-sans select-none bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1974')" }}>
             {/* Overlay to darken background slightly for better readability */}
-            <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
             {/* Desktop Icons Grid */}
             {/* Desktop Icons Grid */}

@@ -55,9 +55,9 @@ const Index: React.FC = () => {
         <>
           {/* Main Content */}
           <div className="scanline"></div>
-          
+
           <Navbar />
-          
+
           {/* Hero Section */}
           <section id="home" className="min-h-screen flex flex-col justify-between relative pt-16 sm:pt-0">
             <div className="container mx-auto px-4 flex-grow flex flex-col items-center justify-center">
@@ -69,17 +69,17 @@ const Index: React.FC = () => {
                   <span className="text-terminal-green">Software Developer</span> | Building Scalable Solutions
                 </div>
               </div>
-              
+
               <div className="max-w-3xl w-full mx-auto h-[60vh]">
                 <ScrollArea className="h-full">
                   <Terminal onComplete={handleBootComplete} preventAutoScroll={true} />
                 </ScrollArea>
               </div>
             </div>
-              
+
             {bootComplete && (
               <div className="w-full flex justify-center mb-6">
-                <div 
+                <div
                   className="text-terminal-text/75 flex flex-col items-center cursor-pointer hover:text-terminal-green transition-colors duration-300"
                   onClick={scrollToContent}
                 >
@@ -89,37 +89,37 @@ const Index: React.FC = () => {
               </div>
             )}
           </section>
-          
+
           {bootComplete && (
             <>
-              <Profile 
+              <Profile
                 name="Aman Maurya"
                 title="Software Developer"
                 location="Mumbai, Maharashtra, India"
                 email="amaurya.dev@gmail.com"
-                photo="/IMG_1172.jpg" // Assuming the image is in the public/images folder
+                photo="/IMG_1172.jpeg" // Assuming the image is in the public/images folder
                 linkedIn="https://www.linkedin.com/in/amanmaurya-me/"
                 github="https://github.com/amanmaurya7"
                 resume="https://drive.google.com/file/d/1IUvCaLDExGS29Dhd3i1AOXY_smeX5Uwn/view?usp=drive_link"
               />
-              
+
               <Experience />
-              
+
               <Projects />
-              
+
               <Skills />
-              
+
               <Education />
-              
+
               <Awards />
-              
-              <Contact 
+
+              <Contact
                 email="amaurya.dev@gmail.com"
                 location="Mumbai, Maharashtra, India"
                 linkedin="https://www.linkedin.com/in/amanmaurya-me/"
                 github="https://github.com/amanmaurya7"
               />
-              
+
               <footer className="py-8 border-t border-terminal-green/20">
                 <div className="container mx-auto px-4 text-center text-terminal-text/60 text-sm">
                   <p>© {new Date().getFullYear()} Aman Maurya. All rights reserved.</p>

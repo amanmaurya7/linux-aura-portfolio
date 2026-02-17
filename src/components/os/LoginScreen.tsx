@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useOS } from "@/context/OSContext";
 import { User, Lock, ArrowRight, Power } from "lucide-react";
-import photo from "../../assets/IMG_1172.jpg";
+import photo from "../../assets/IMG_1172.jpeg";
 
 const LoginScreen = () => {
     const { login } = useOS();
@@ -34,7 +34,7 @@ const LoginScreen = () => {
         <div
             className="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-between py-12 relative overflow-hidden"
             style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?auto=format&fit=crop&q=80&w=2070')",
+                backgroundImage: "url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1974')",
             }}
         >
             {/* Overlay */}
