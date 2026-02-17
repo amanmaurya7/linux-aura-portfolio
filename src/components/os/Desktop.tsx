@@ -58,19 +58,21 @@ const Desktop = () => {
             <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
 
             {/* Desktop Icons Grid */}
-            <div className="absolute top-8 left-8 grid grid-cols-1 gap-8 w-24 z-10">
+            {/* Desktop Icons Grid */}
+            <div className="absolute top-4 left-4 bottom-14 flex flex-col flex-wrap content-start items-start gap-4 p-2 z-0 max-w-full overflow-hidden">
                 {icons.map((icon) => (
                     <div
                         key={icon.label}
-                        className="flex flex-col items-center group cursor-pointer active:scale-95 transition-transform"
+                        className="flex flex-col items-center justify-center p-2 rounded-md hover:bg-white/10 transition-colors group cursor-pointer active:scale-95 w-24 h-28"
                         onDoubleClick={() => handleLaunch(icon.app)}
                     >
-                        <div className="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mb-2 group-hover:bg-white/20 transition-colors shadow-lg backdrop-blur-md border border-white/10 relative">
-                            {/* Shine effect */}
+                        <div className="w-14 h-14 bg-gradient-to-br from-white/10 to-white/5 rounded-xl flex items-center justify-center mb-2 shadow-lg backdrop-blur-sm border border-white/10 relative group-hover:border-white/30 transition-all">
                             <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                            <icon.icon className="text-white drop-shadow-lg" size={32} />
+                            <icon.icon className="text-white drop-shadow-md" size={32} />
                         </div>
-                        <span className="text-white text-xs sm:text-sm text-center font-medium drop-shadow-md bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm border border-white/5 truncate w-[110%] group-hover:bg-black/70 transition-colors">{icon.label}</span>
+                        <span className="text-white text-xs text-center font-medium drop-shadow-md px-1 rounded-sm line-clamp-2 leading-tight select-none">
+                            {icon.label}
+                        </span>
                     </div>
                 ))}
             </div>
