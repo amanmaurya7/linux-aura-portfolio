@@ -64,15 +64,16 @@ const BootScreen = () => {
     // Boot messages phase
     useEffect(() => {
         if (phase !== "boot") return;
-        let i = 0;
         const interval = setInterval(() => {
-            if (i < bootMessages.length) {
-                setVisibleLines((prev) => [...prev, bootMessages[i]]);
-                i++;
-            } else {
-                clearInterval(interval);
-                setPhase("loading");
-            }
+            setVisibleLines((prev) => {
+                if (prev.length < bootMessages.length) {
+                    return [...prev, bootMessages[prev.length]];
+                } else {
+                    clearInterval(interval);
+                    setPhase("loading");
+                    return prev;
+                }
+            });
         }, 55);
         return () => clearInterval(interval);
     }, [phase]);
@@ -114,8 +115,8 @@ const BootScreen = () => {
                             <div
                                 key={i}
                                 className={`py-1 px-3 text-sm cursor-pointer ${i === selectedGrub
-                                        ? "bg-white text-black font-bold"
-                                        : "text-gray-300"
+                                    ? "bg-white text-black font-bold"
+                                    : "text-gray-300"
                                     }`}
                                 onMouseEnter={() => setSelectedGrub(i)}
                             >
@@ -143,15 +144,15 @@ const BootScreen = () => {
         return (
             <div className="h-screen w-screen bg-black text-green-400 font-mono text-xs overflow-hidden p-4 select-none">
                 <div className="overflow-y-auto h-full space-y-0.5">
-                    {visibleLines.map((line, i) => (
+                    {visibleLines.filter(Boolean).map((line, i) => (
                         <div
                             key={i}
                             className="whitespace-pre-wrap animate-fade-in"
                             style={{
                                 animationDelay: `${i * 10}ms`,
-                                color: line.startsWith("Starting") ? "#89b4fa" :
-                                    line.includes("NVIDIA") ? "#a6e3a1" :
-                                        line.includes("error") ? "#f38ba8" : "#94e2d5"
+                                color: (line || "").startsWith("Starting") ? "#89b4fa" :
+                                    (line || "").includes("NVIDIA") ? "#a6e3a1" :
+                                        (line || "").includes("error") ? "#f38ba8" : "#94e2d5"
                             }}
                         >
                             {line}
