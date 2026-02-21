@@ -39,13 +39,9 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-terminal-bg text-terminal-text">
-      {/* Loading Screen */}
       {loading ? (
         <div className="fixed inset-0 flex items-center justify-center bg-terminal-bg z-50">
           <div className="text-center px-4">
-            <div className="text-terminal-green text-2xl sm:text-4xl font-bold mb-6 animate-pulse font-display">
-              Loading Portfolio...
-            </div>
             <div className="w-64 h-2 bg-terminal-dark rounded-full overflow-hidden mx-auto">
               <div className="h-full bg-terminal-green animate-loading"></div>
             </div>

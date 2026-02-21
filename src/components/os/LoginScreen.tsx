@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useOS } from "@/context/OSContext";
 import { Lock, Power, Wifi, Battery, KeyRound } from "lucide-react";
+import photo from "@/assets/IMG_1172.jpeg";
 
 const LoginScreen = () => {
     const { login, wallpaper, isLocked } = useOS();
@@ -108,9 +109,11 @@ const LoginScreen = () => {
                 {/* Avatar */}
                 <div className="animate-fade-in" style={{ animationDelay: "0.15s" }}>
                     <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-[#89b4fa] via-[#cba6f7] to-[#f38ba8] p-1 shadow-2xl shadow-[#89b4fa]/30 mb-4">
-                        <div className="w-full h-full rounded-full bg-[#1e1e2e] flex items-center justify-center text-3xl sm:text-4xl font-bold text-[#cdd6f4]">
-                            AM
-                        </div>
+                        <img
+                            src={photo}
+                            alt="Aman Maurya"
+                            className="w-full h-full rounded-full object-cover"
+                        />
                     </div>
                 </div>
 
