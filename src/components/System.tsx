@@ -6,10 +6,10 @@ import Desktop from './os/Desktop';
 import LoginScreen from './os/LoginScreen';
 
 const System = () => {
-    const { isBooting, isLoggedIn } = useOS();
+    const { isBooting, isLoggedIn, isLocked } = useOS();
 
     if (isBooting) return <BootScreen />;
-    if (!isLoggedIn) return <LoginScreen />;
+    if (!isLoggedIn || isLocked) return <LoginScreen />;
     return <Desktop />;
 };
 

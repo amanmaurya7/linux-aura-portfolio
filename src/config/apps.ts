@@ -34,5 +34,8 @@ export const appConfigs: any = {
     Terminal: { title: "Terminal", component: "Terminal", props: {} },
     Browser: { title: "Browser", component: "Browser", props: {} },
     Settings: { title: "Settings", component: "Settings", props: {} },
-    Calculator: { title: "Calculator", component: "Calculator", props: {} }
+    Calculator: { title: "Calculator", component: "Calculator", props: {} },
+    FileManager: { title: "Files", component: "FileManager", props: {} },
+    SystemMonitor: { title: "System Monitor", component: "SystemMonitor", props: {} },
+    TextEditor: { title: "Text Editor", component: "TextEditor", props: {} },
 };

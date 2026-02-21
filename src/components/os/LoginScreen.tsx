@@ -1,115 +1,172 @@
 
 import React, { useState, useEffect } from "react";
 import { useOS } from "@/context/OSContext";
-import { User, Lock, ArrowRight, Power } from "lucide-react";
-import photo from "../../assets/IMG_1172.jpeg";
+import { Lock, Power, Wifi, Battery, KeyRound } from "lucide-react";
 
 const LoginScreen = () => {
-    const { login } = useOS();
+    const { login, wallpaper, isLocked } = useOS();
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [currentTime, setCurrentTime] = useState(new Date());
+    const [time, setTime] = useState(new Date());
+    const [showLogin, setShowLogin] = useState(false);
 
     useEffect(() => {
-        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-        return () => clearInterval(timer);
+        const interval = setInterval(() => setTime(new Date()), 1000);
+        return () => clearInterval(interval);
     }, []);
+
+    // Show lock screen initially, click or key press to show login form
+    useEffect(() => {
+        const handleInteraction = () => {
+            if (!showLogin) setShowLogin(true);
+        };
+        window.addEventListener("keydown", handleInteraction);
+        window.addEventListener("click", handleInteraction);
+        return () => {
+            window.removeEventListener("keydown", handleInteraction);
+            window.removeEventListener("click", handleInteraction);
+        };
+    }, [showLogin]);
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
-        setTimeout(() => {
-            // Any password works for now, or make empty
-            if (true) {
-                login();
-            } else {
-                setError(true);
-                setLoading(false);
-            }
-        }, 800);
+        // Accept any password or empty
+        if (password === "" || password.toLowerCase() === "password" || password === "1234" || password.length > 0) {
+            login();
+        }
     };
 
+    const formattedTime = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const formattedDate = time.toLocaleDateString(undefined, {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+    });
+
+    // Lock screen (just shows time, click to proceed)
+    if (!showLogin) {
+        return (
+            <div
+                className="h-screen w-screen bg-cover bg-center relative overflow-hidden cursor-pointer select-none"
+                style={{ backgroundImage: `url('${wallpaper}')` }}
+            >
+                {/* Blur overlay */}
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-xl" />
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
+                    <div className="text-7xl sm:text-8xl font-light tracking-wide animate-fade-in">
+                        {formattedTime}
+                    </div>
+                    <div className="text-lg sm:text-xl text-white/80 mt-3 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                        {formattedDate}
+                    </div>
+
+                    {/* Swipe up hint */}
+                    <div className="absolute bottom-12 flex flex-col items-center animate-fade-in-up text-white/50" style={{ animationDelay: "0.5s" }}>
+                        <div className="w-10 h-1 bg-white/30 rounded-full mb-3 animate-bounce" />
+                        <span className="text-xs">{isLocked ? "Click to unlock" : "Click to sign in"}</span>
+                    </div>
+                </div>
+
+                {/* Status bar top */}
+                <div className="absolute top-4 right-4 flex items-center gap-3 text-white/60 text-xs z-10">
+                    <Wifi size={14} />
+                    <Battery size={14} />
+                    <span>{formattedTime}</span>
+                </div>
+            </div>
+        );
+    }
+
+    // Login form
     return (
         <div
-            className="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-between py-12 relative overflow-hidden"
-            style={{
-                backgroundImage: "url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1974')",
-            }}
+            className="h-screen w-screen bg-cover bg-center relative overflow-hidden select-none"
+            style={{ backgroundImage: `url('${wallpaper}')` }}
         >
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-md z-0"></div>
+            {/* Dark blur overlay */}
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-2xl" />
 
-            {/* Time */}
-            <div className="z-10 text-center text-white drop-shadow-md animate-fade-in-down">
-                <div className="text-6xl md:text-8xl font-thin tracking-wider mb-2">
-                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
-                </div>
-                <div className="text-xl md:text-2xl font-light opacity-90">
-                    {currentTime.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
-                </div>
+            {/* Status bar top */}
+            <div className="absolute top-4 right-4 flex items-center gap-3 text-white/60 text-xs z-10">
+                <Wifi size={14} />
+                <Battery size={14} />
+                <span>{formattedTime}</span>
             </div>
 
-            {/* Login Form */}
-            <div className="z-10 w-full max-w-sm px-4">
-                <div className="bg-black/30 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-2xl animate-fade-in-up">
-                    <div className="flex flex-col items-center mb-6">
-                        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white/20 mb-4 shadow-xl relative group">
-                            <img src={photo} alt="User" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                                <span className="text-white text-xs">Change</span>
-                            </div>
-                        </div>
-                        <h2 className="text-2xl font-semibold text-white tracking-wide">Aman Maurya</h2>
-                        <p className="text-gray-400 text-sm mt-1">Administrator</p>
-                    </div>
-
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <div className="relative group">
-                            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-white transition-colors" size={16} />
-                            <input
-                                type="password"
-                                placeholder="Enter Password"
-                                value={password}
-                                onChange={(e) => {
-                                    setPassword(e.target.value);
-                                    setError(false);
-                                }}
-                                className={`w-full bg-white/5 border ${error ? 'border-red-500' : 'border-white/10'} rounded-lg py-2.5 pl-10 pr-10 text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:bg-white/10 transition-all`}
-                                autoFocus
-                            />
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 bg-white/10 hover:bg-white/20 rounded-md text-gray-300 hover:text-white transition-all disabled:opacity-50"
-                            >
-                                <ArrowRight size={16} />
-                            </button>
-                        </div>
-
-                        {error && <p className="text-red-400 text-xs text-center animate-shake">Incorrect password. Please try again.</p>}
-
-                        {loading && (
-                            <div className="flex justify-center mt-4">
-                                <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-                            </div>
-                        )}
-
-                        {!loading && (
-                            <p className="text-center text-gray-500 text-xs mt-4">Hint: Just press Enter 😉</p>
-                        )}
-                    </form>
+            {/* Login Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
+                {/* Time */}
+                <div className="text-4xl sm:text-5xl font-light tracking-wide mb-2 animate-fade-in-down">
+                    {formattedTime}
                 </div>
-            </div>
+                <div className="text-sm text-white/60 mb-10 animate-fade-in-down" style={{ animationDelay: "0.1s" }}>
+                    {formattedDate}
+                </div>
 
-            {/* Footer / Controls */}
-            <div className="z-10 flex space-x-6 text-white/70">
-                <button className="flex flex-col items-center hover:text-white transition-colors gap-1 group">
-                    <div className="p-3 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">
-                        <Power size={20} />
+                {/* Avatar */}
+                <div className="animate-fade-in" style={{ animationDelay: "0.15s" }}>
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-[#89b4fa] via-[#cba6f7] to-[#f38ba8] p-1 shadow-2xl shadow-[#89b4fa]/30 mb-4">
+                        <div className="w-full h-full rounded-full bg-[#1e1e2e] flex items-center justify-center text-3xl sm:text-4xl font-bold text-[#cdd6f4]">
+                            AM
+                        </div>
                     </div>
-                    <span className="text-xs">Shut Down</span>
-                </button>
+                </div>
+
+                {/* Name */}
+                <h2 className="text-xl font-semibold mb-1 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                    Aman Maurya
+                </h2>
+                <p className="text-xs text-white/50 mb-6 animate-fade-in" style={{ animationDelay: "0.25s" }}>
+                    aman@linux-aura
+                </p>
+
+                {/* Login form */}
+                <form onSubmit={handleLogin} className="w-72 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+                    <div className={`relative group ${error ? 'animate-shake' : ''}`}>
+                        <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-[#89b4fa] transition-colors" />
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                setError(false);
+                            }}
+                            placeholder="Password (press Enter)"
+                            autoFocus
+                            className={`
+                                w-full bg-white/10 backdrop-blur-md text-white pl-10 pr-12 py-3 rounded-full
+                                border border-white/20 focus:border-[#89b4fa]/60
+                                focus:outline-none focus:ring-2 focus:ring-[#89b4fa]/20
+                                text-sm placeholder-white/30 transition-all
+                                ${error ? 'border-red-400/60 ring-2 ring-red-400/20' : ''}
+                            `}
+                        />
+                        <button
+                            type="submit"
+                            className="absolute right-1.5 top-1/2 -translate-y-1/2 p-2 bg-[#89b4fa] rounded-full hover:bg-[#89b4fa]/80 transition-colors"
+                        >
+                            <KeyRound size={14} className="text-[#1e1e2e]" />
+                        </button>
+                    </div>
+                    {error && (
+                        <p className="text-red-400 text-xs text-center mt-2 animate-fade-in">
+                            Incorrect password. Try again.
+                        </p>
+                    )}
+                    <p className="text-white/30 text-[10px] text-center mt-3">
+                        Enter any password or just press Enter
+                    </p>
+                </form>
+
+                {/* Other users / power */}
+                <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-8 text-white/40">
+                    <button className="flex flex-col items-center gap-1 hover:text-white/70 transition-colors text-xs">
+                        <Power size={16} />
+                        <span>Power Off</span>
+                    </button>
+                </div>
             </div>
         </div>
     );

@@ -69,7 +69,7 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
 
     const minimizeWindow = (id: string) => {
         setWindows(
-            windows.map((w) => (w.id === id ? { ...w, minimized: !w.minimized } : w))
+            windows.map((w) => (w.id === id ? { ...w, minimized: true } : w))
         );
     };
 
@@ -85,7 +85,7 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
             const w = prev.find((x) => x.id === id);
             if (!w) return prev;
             const others = prev.filter((x) => x.id !== id);
-            return [...others, { ...w, zIndex: prev.length + 1 }];
+            return [...others, { ...w, minimized: false, zIndex: prev.length + 1 }];
         });
     };
 
