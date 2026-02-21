@@ -145,6 +145,53 @@ export const CalculatorIcon = ({ size = 48, className = "" }) => (
     </svg>
 );
 
+export const FileManagerIcon = ({ size = 48, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+        {/* Cabinet */}
+        <rect x="8" y="6" width="48" height="52" rx="4" fill="#3B3B4F" />
+        {/* Drawer 1 */}
+        <rect x="12" y="10" width="40" height="14" rx="2" fill="#89B4FA" />
+        <rect x="28" y="15" width="8" height="4" rx="2" fill="#CDD6F4" />
+        {/* Drawer 2 */}
+        <rect x="12" y="28" width="40" height="14" rx="2" fill="#89B4FA" opacity="0.8" />
+        <rect x="28" y="33" width="8" height="4" rx="2" fill="#CDD6F4" />
+        {/* Drawer 3 */}
+        <rect x="12" y="46" width="40" height="8" rx="2" fill="#89B4FA" opacity="0.6" />
+    </svg>
+);
+
+export const SystemMonitorIcon = ({ size = 48, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+        {/* Background */}
+        <rect x="4" y="4" width="56" height="56" rx="12" fill="#1E1E2E" />
+        {/* Heart rate line */}
+        <path d="M8 36 L16 36 L20 20 L24 48 L28 28 L32 40 L36 24 L40 36 L48 36 L56 36" fill="none" stroke="#A6E3A1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Bars at bottom */}
+        <rect x="12" y="44" width="6" height="12" rx="1" fill="#89B4FA" opacity="0.8" />
+        <rect x="20" y="40" width="6" height="16" rx="1" fill="#CBA6F7" opacity="0.8" />
+        <rect x="28" y="42" width="6" height="14" rx="1" fill="#F9E2AF" opacity="0.8" />
+        <rect x="36" y="38" width="6" height="18" rx="1" fill="#F38BA8" opacity="0.8" />
+        <rect x="44" y="46" width="6" height="10" rx="1" fill="#94E2D5" opacity="0.8" />
+    </svg>
+);
+
+export const TextEditorIcon = ({ size = 48, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+        {/* Paper */}
+        <rect x="8" y="4" width="44" height="56" rx="4" fill="#CDD6F4" />
+        <rect x="8" y="4" width="44" height="12" rx="4" fill="#89B4FA" />
+        {/* Lines */}
+        <rect x="14" y="22" width="32" height="2.5" rx="1" fill="#6C7086" />
+        <rect x="14" y="28" width="28" height="2.5" rx="1" fill="#6C7086" />
+        <rect x="14" y="34" width="30" height="2.5" rx="1" fill="#6C7086" />
+        <rect x="14" y="40" width="20" height="2.5" rx="1" fill="#6C7086" />
+        <rect x="14" y="46" width="26" height="2.5" rx="1" fill="#6C7086" />
+        {/* Pencil */}
+        <rect x="44" y="32" width="16" height="6" rx="1" fill="#F9E2AF" transform="rotate(-45 52 35)" />
+        <path d="M40.5 44 L38 50 L44 47.5 Z" fill="#F38BA8" />
+    </svg>
+);
+
 export const NotesIcon = ({ size = 48, className = "" }) => (
     <svg width={size} height={size} viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
         <rect x="12" y="8" width="40" height="48" rx="4" fill="#FFEB3B" />
